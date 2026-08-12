@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Academia de Inglés</title>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Academia de Inglés</h1>
+
+    <form th:action="@{/logout}" method="post">
+
+        <button type="submit">
+            Cerrar sesión
+        </button>
+
+    </form>
+
+</header>
+
+
+<main>
+
+    <section>
+
+        <h2 th:text="'¡Hola, ' + ${alumno.nombre} + '!'">
+            ¡Hola!
+        </h2>
+
+        <p th:text="'Curso: ' + ${curso.nombreCurso}">
+            Curso
+        </p>
+
+    </section>
+
+
+    <section>
+
+        <h2>Temas</h2>
+
+
+        <p th:if="${#lists.isEmpty(temas)}">
+            Todavía no hay temas disponibles para este curso.
+        </p>
+
+
+        <div th:each="tema : ${temas}">
+
+            <a th:href="@{/alumno/temas/{id}(id=${tema.id})}">
+
+                <article>
+
+                    <h3 th:text="${tema.titulo}">
+                        Nombre del tema
+                    </h3>
+
+                </article>
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

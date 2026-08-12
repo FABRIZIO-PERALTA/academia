@@ -2,8 +2,10 @@ package com.fabri.academia.service;
 
 import com.fabri.academia.domain.Alumno;
 import com.fabri.academia.domain.Curso;
+import com.fabri.academia.domain.Usuario;
 import com.fabri.academia.repository.AlumnoRepository;
 import com.fabri.academia.repository.CursoRepository;
+import com.fabri.academia.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,13 +16,12 @@ import java.util.Optional;
 public class AlumnoService {
 
     private final AlumnoRepository alumnoRepository;
+    private final UsuarioRepository usuarioRepository;
     private final CursoRepository cursoRepository;
 
-    public AlumnoService(
-            AlumnoRepository alumnoRepository,
-            CursoRepository cursoRepository) {
-
+    public AlumnoService(AlumnoRepository alumnoRepository, UsuarioRepository usuarioRepository, CursoRepository cursoRepository) {
         this.alumnoRepository = alumnoRepository;
+        this.usuarioRepository = usuarioRepository;
         this.cursoRepository = cursoRepository;
     }
 
@@ -43,4 +44,23 @@ public class AlumnoService {
     public Optional<Alumno> buscarPorId(Long id) {
         return alumnoRepository.findById(id);
     }
+
+    @Transactional(readOnly = true)
+    public Alumno obtenerAlumnoPorUsername(String username) {
+
+        Usuario usuario = usuarioRepository.findByUsername(username)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Usuario no encontrado"));
+
+        Alumno alumno = usuario.getAlumno();
+
+        if (alumno == null) {
+            throw new IllegalStateException(
+                    "El usuario no tiene un alumno asociado"
+            );
+        }
+
+        return alumno;
+    }
+
 }

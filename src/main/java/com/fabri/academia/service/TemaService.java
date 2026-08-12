@@ -43,4 +43,9 @@ public class TemaService {
     public Optional<Tema> buscarPorId(Long id) {
         return temaRepository.findById(id);
     }
+
+    @Transactional(readOnly = true)
+    public List<Tema> obtenerTemasPorCurso(Long cursoId) {
+        return temaRepository.findByCursoId(cursoId);
+    }
 }
