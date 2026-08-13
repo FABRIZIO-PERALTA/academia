@@ -43,4 +43,10 @@ public class RecursoService {
     public Optional<Recurso> buscarPorId(Long id) {
         return recursoRepository.findById(id);
     }
+
+    @Transactional(readOnly = true)
+    public List<Recurso> obtenerRecursosPorTema(Long temaId) {
+        return recursoRepository.findByTemaId(temaId);
+    }
+
 }
