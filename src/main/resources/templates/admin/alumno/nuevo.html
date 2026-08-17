@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo alumno</title>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Academia de Inglés</h1>
+
+    <a th:href="@{/admin/inicio}">
+        Volver al panel
+    </a>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">
+            Cerrar sesión
+        </button>
+    </form>
+
+</header>
+
+
+<main>
+
+    <h2>Añadir alumno</h2>
+
+    <form th:action="@{/admin/alumnos/nuevo}"
+          th:object="${alumno}"
+          method="post">
+
+        <div>
+
+            <label for="nombre">
+                Nombre
+            </label>
+
+            <input
+                    type="text"
+                    id="nombre"
+                    th:field="*{nombre}"
+                    required
+            >
+
+        </div>
+
+
+        <div>
+
+            <label for="apellido">
+                Apellido
+            </label>
+
+            <input
+                    type="text"
+                    id="apellido"
+                    th:field="*{apellido}"
+                    required
+            >
+
+        </div>
+
+
+        <div>
+
+            <label for="dni">
+                DNI
+            </label>
+
+            <input
+                    type="text"
+                    id="dni"
+                    th:field="*{dni}"
+                    required
+            >
+
+        </div>
+
+
+        <div>
+
+            <label for="cursoId">
+                Curso
+            </label>
+
+            <select
+                    id="cursoId"
+                    name="cursoId"
+                    required>
+
+                <option value="">
+                    Seleccionar curso
+                </option>
+
+                <option
+                        th:each="curso : ${cursos}"
+                        th:value="${curso.id}"
+                        th:text="${curso.nivel}">
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button type="submit">
+            Guardar alumno
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

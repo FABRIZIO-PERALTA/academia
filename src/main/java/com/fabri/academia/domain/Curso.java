@@ -1,5 +1,6 @@
 package com.fabri.academia.domain;
 
+import com.fabri.academia.domain.enums.NivelCurso;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,9 @@ public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombreCurso;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, unique = true)
+    private NivelCurso nivel;
     @OneToMany(mappedBy = "curso")
     private List<Alumno> alumnos;
     @OneToMany(mappedBy = "curso")

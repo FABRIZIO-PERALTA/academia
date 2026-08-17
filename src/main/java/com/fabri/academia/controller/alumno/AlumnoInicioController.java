@@ -8,6 +8,7 @@ import com.fabri.academia.domain.enums.TipoRecurso;
 import com.fabri.academia.service.AlumnoService;
 import com.fabri.academia.service.RecursoService;
 import com.fabri.academia.service.TemaService;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +57,13 @@ public class AlumnoInicioController {
     @GetMapping("/temas/{temaId}")
     public String verTema(
             @PathVariable Long temaId,
+            Authentication authentication,
             Model model) {
+
+        Alumno alumno =
+                alumnoService.obtenerAlumnoPorUsername(
+                        authentication.getName()
+                );
 
         Tema tema = temaService.buscarPorId(temaId)
                 .orElseThrow(() ->
@@ -64,6 +71,14 @@ public class AlumnoInicioController {
                                 "El tema no existe"
                         )
                 );
+
+        if (!tema.getCurso().getId()
+                .equals(alumno.getCurso().getId())) {
+
+            throw new AccessDeniedException(
+                    "No tenés permiso para acceder a este tema"
+            );
+        }
 
         List<Recurso> recursos =
                 recursoService.obtenerRecursosPorTema(temaId);
