@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cursos</title>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Academia de Inglés</h1>
+
+    <a th:href="@{/admin/inicio}">
+        Volver al panel
+    </a>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">
+            Cerrar sesión
+        </button>
+    </form>
+
+</header>
+
+
+<main>
+
+    <h2>Cursos</h2>
+
+    <p>Seleccioná un curso para ver sus alumnos y temas.</p>
+
+
+    <div th:each="curso : ${cursos}">
+
+        <a th:href="@{/admin/cursos/{id}(id=${curso.id})}">
+
+            <article>
+
+                <h3 th:text="${curso.nivel}">
+                    Nivel del curso
+                </h3>
+
+            </article>
+
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

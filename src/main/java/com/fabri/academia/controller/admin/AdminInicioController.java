@@ -1,4 +1,4 @@
-package com.fabri.academia.controller;
+package com.fabri.academia.controller.admin;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

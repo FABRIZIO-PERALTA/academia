@@ -63,4 +63,9 @@ public class AlumnoService {
         return alumno;
     }
 
+    @Transactional(readOnly = true)
+    public List<Alumno> obtenerAlumnosPorCurso(Long cursoId) {
+        return alumnoRepository.findByCursoId(cursoId);
+    }
+
 }
