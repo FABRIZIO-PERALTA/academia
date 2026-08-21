@@ -1,59 +1,241 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title th:text="${tema.titulo}">Tema</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${tema.titulo} + ' | Too Cool for School'">
+        Tema | Too Cool for School
+    </title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/alumno-tema.css}">
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
-    <a th:href="@{/alumno/inicio}">
-        Volver al inicio
-    </a>
+    <div class="header-content">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+        <div class="topic-info">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div class="topic-heading">
+
+                <h1 th:text="${tema.titulo}">
+                    Nom del tema
+                </h1>
+
+                <p>
+                    Curs:
+                    <strong th:text="${tema.curso.nivel}">
+                        A1
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a th:href="@{/alumno/inicio}"
+               class="back-button">
+                Tornar a l'inici
+            </a>
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button
+                        type="submit"
+                        class="logout-button">
+
+                    Tancar sessió
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </header>
 
 
-<main>
+<main class="main-content">
 
-    <h1 th:text="${tema.titulo}">
-        Nombre del tema
-    </h1>
+    <section class="resource-navigation">
 
+        <h2>Recursos del tema</h2>
 
-
-    <nav>
-        <a href="#videos">Videos</a>
-        <a href="#actividades">Actividades</a>
-        <a href="#juegos">Juegos</a>
-    </nav>
-
-
-
-    <section id="videos">
-
-        <h2>Videos</h2>
-
-        <p th:if="${#lists.isEmpty(videos)}">
-            No hay videos disponibles.
+        <p>
+            Tria el tipus de recurs que vols consultar.
         </p>
 
-        <div th:each="recurso : ${videos}">
+        <nav class="resource-links">
 
-            <a th:href="${recurso.url}"
-               target="_blank"
-               th:text="${recurso.titulo}">
-                Video
+            <a href="#videos">
+                Vídeos
+            </a>
+
+            <a href="#activitats">
+                Activitats
+            </a>
+
+            <a href="#jocs">
+                Jocs
+            </a>
+
+        </nav>
+
+    </section>
+
+
+
+    <section
+            id="videos"
+            class="resource-section">
+
+        <div class="section-title">
+
+            <h2>Vídeos</h2>
+
+            <span th:text="${#lists.size(videos)}">
+            0
+        </span>
+
+        </div>
+
+
+        <p class="empty-message"
+           th:if="${#lists.isEmpty(videos)}">
+
+            Encara no hi ha vídeos disponibles.
+
+        </p>
+
+
+        <div class="video-grid"
+             th:if="${!#lists.isEmpty(videos)}">
+
+            <article
+                    th:each="recurso : ${videos}"
+                    class="video-card">
+
+                <div class="video-info">
+
+        <span class="resource-type">
+            Vídeo
+        </span>
+
+                    <h3 th:text="${recurso.titulo}">
+                        Títol del vídeo
+                    </h3>
+
+                </div>
+
+
+                <div class="video-frame"
+                     th:if="${videosEmbed[recurso.id] != null}">
+
+                    <iframe
+                            th:src="${videosEmbed[recurso.id]}"
+                            th:title="${recurso.titulo}"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                    </iframe>
+
+                </div>
+
+
+                <div class="video-fallback"
+                     th:if="${videosEmbed[recurso.id] == null}">
+
+                    <p>
+                        Aquest vídeo no es pot reproduir directament.
+                    </p>
+
+                    <a th:href="${recurso.url}"
+                       target="_blank"
+                       rel="noopener noreferrer">
+
+                        Obrir vídeo
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+
+    <section
+            id="activitats"
+            class="resource-section">
+
+        <div class="section-title">
+
+            <h2>Activitats</h2>
+
+            <span th:text="${#lists.size(actividades)}">
+                0
+            </span>
+
+        </div>
+
+
+        <p class="empty-message"
+           th:if="${#lists.isEmpty(actividades)}">
+
+            Encara no hi ha activitats disponibles.
+
+        </p>
+
+
+        <div class="resource-list"
+             th:if="${!#lists.isEmpty(actividades)}">
+
+            <a
+                    th:each="recurso : ${actividades}"
+                    th:href="${recurso.url}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="resource-card">
+
+                <div>
+
+                    <span class="resource-type">
+                        Activitat
+                    </span>
+
+                    <h3 th:text="${recurso.titulo}">
+                        Títol de l'activitat
+                    </h3>
+
+                </div>
+
+                <span class="open-resource">
+                    Obrir →
+                </span>
+
             </a>
 
         </div>
@@ -62,42 +244,56 @@
 
 
 
-    <section id="actividades">
 
-        <h2>Actividades</h2>
+    <section
+            id="jocs"
+            class="resource-section">
 
-        <p th:if="${#lists.isEmpty(actividades)}">
-            No hay actividades disponibles.
-        </p>
+        <div class="section-title">
 
-        <div th:each="recurso : ${actividades}">
+            <h2>Jocs</h2>
 
-            <a th:href="${recurso.url}"
-               target="_blank"
-               th:text="${recurso.titulo}">
-                Actividad
-            </a>
+            <span th:text="${#lists.size(juegos)}">
+                0
+            </span>
 
         </div>
 
-    </section>
 
+        <p class="empty-message"
+           th:if="${#lists.isEmpty(juegos)}">
 
+            Encara no hi ha jocs disponibles.
 
-    <section id="juegos">
-
-        <h2>Juegos</h2>
-
-        <p th:if="${#lists.isEmpty(juegos)}">
-            No hay juegos disponibles.
         </p>
 
-        <div th:each="recurso : ${juegos}">
 
-            <a th:href="${recurso.url}"
-               target="_blank"
-               th:text="${recurso.titulo}">
-                Juego
+        <div class="resource-list"
+             th:if="${!#lists.isEmpty(juegos)}">
+
+            <a
+                    th:each="recurso : ${juegos}"
+                    th:href="${recurso.url}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="resource-card">
+
+                <div>
+
+                    <span class="resource-type">
+                        Joc
+                    </span>
+
+                    <h3 th:text="${recurso.titulo}">
+                        Títol del joc
+                    </h3>
+
+                </div>
+
+                <span class="open-resource">
+                    Obrir →
+                </span>
+
             </a>
 
         </div>

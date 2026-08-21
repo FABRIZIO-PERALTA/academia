@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir tema</title>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Academia de Inglés</h1>
+
+    <a th:href="@{/docente/inicio}">
+        Volver al panel
+    </a>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">
+            Cerrar sesión
+        </button>
+    </form>
+
+</header>
+
+<main>
+
+    <h2>Añadir tema</h2>
+
+    <form th:action="@{/docente/temas/nuevo}"
+          th:object="${tema}"
+          method="post">
+
+        <div>
+
+            <label for="cursoId">
+                Curso
+            </label>
+
+            <select id="cursoId"
+                    name="cursoId"
+                    required>
+
+                <option value="">
+                    Seleccionar curso
+                </option>
+
+                <option
+                        th:each="curso : ${cursos}"
+                        th:value="${curso.id}"
+                        th:text="${curso.nivel}">
+                </option>
+
+            </select>
+
+        </div>
+
+        <div>
+
+            <label for="titulo">
+                Título
+            </label>
+
+            <input
+                    id="titulo"
+                    type="text"
+                    th:field="*{titulo}"
+                    required>
+        </div>
+
+        <div>
+
+            <label for="dificultad">
+                Dificultad
+            </label>
+
+            <select id="dificultad"
+                    th:field="*{dificultad}"
+                    required>
+
+                <option value="">
+                    Seleccionar dificultad
+                </option>
+
+                <option
+                        th:each="dificultad : ${dificultades}"
+                        th:value="${dificultad}"
+                        th:text="${dificultad}">
+                </option>
+
+            </select>
+
+        </div>
+
+        <button type="submit">
+            Guardar tema
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+</html>

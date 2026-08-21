@@ -1,65 +1,138 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Inicio - Academia de Inglés</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>La meva aula | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/alumno-inicio.css}">
 </head>
 
 <body>
 
-<header>
+<!-- =========================================
+     CAPÇALERA
+     ========================================= -->
 
-    <h1>Academia de Inglés</h1>
+<header class="main-header">
 
-    <form th:action="@{/logout}" method="post">
+    <div class="header-content">
 
-        <button type="submit">
-            Cerrar sesión
-        </button>
+        <!-- Logo + benvinguda -->
+        <div class="student-info">
 
-    </form>
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div class="welcome">
+
+                <h1 th:text="'Hola, ' + ${alumno.nombre} + '!'">
+                    Hola!
+                </h1>
+
+                <p>
+                    Curs:
+                    <strong th:text="${curso.nivel}">
+                        A1
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Tancar sessió -->
+        <form th:action="@{/logout}"
+              method="post"
+              class="logout-form">
+
+            <button
+                    type="submit"
+                    class="logout-button">
+
+                Tancar sessió
+
+            </button>
+
+        </form>
+
+    </div>
 
 </header>
 
 
-<main>
+<!-- =========================================
+     CONTINGUT PRINCIPAL
+     ========================================= -->
 
-    <section>
+<main class="main-content">
 
-        <h2 th:text="'¡Hola, ' + ${alumno.nombre} + '!'">
-            ¡Hola!
-        </h2>
+    <section class="topics-section">
 
-        <p th:text="'Curso: ' + ${curso.nivel}">
-            Curso
-        </p>
+        <div class="section-header">
 
-    </section>
+            <h2>Els teus temes</h2>
 
+            <p>
+                Selecciona un tema per accedir als seus recursos.
+            </p>
 
-    <section>
-
-        <h2>Temas</h2>
-
-
-        <p th:if="${#lists.isEmpty(temas)}">
-            Todavía no hay temas disponibles para este curso.
-        </p>
+        </div>
 
 
-        <div th:each="tema : ${temas}">
+        <!-- Si no hi ha temes -->
+        <div class="empty-message"
+             th:if="${#lists.isEmpty(temas)}">
 
-            <a th:href="@{/alumno/temas/{id}(id=${tema.id})}">
+            Encara no hi ha temes disponibles per a aquest curs.
 
-                <article>
+        </div>
+
+
+        <!-- Graella de temes -->
+        <div class="topics-grid"
+             th:if="${!#lists.isEmpty(temas)}">
+
+            <a
+                    th:each="tema : ${temas}"
+                    th:href="@{/alumno/temas/{id}(id=${tema.id})}"
+                    class="topic-card">
+
+                <!--
+                     Quan afegim imatges als temes,
+                     aquesta zona podrà contenir-les.
+                -->
+                <div class="topic-card-visual">
+
+                    <span class="topic-letter"
+                          th:text="${#strings.substring(tema.titulo, 0, 1)}">
+                        T
+                    </span>
+
+                </div>
+
+
+                <div class="topic-card-content">
 
                     <h3 th:text="${tema.titulo}">
-                        Nombre del tema
+                        Nom del tema
                     </h3>
 
-                </article>
+                    <span class="topic-link">
+                        Veure recursos →
+                    </span>
+
+                </div>
 
             </a>
 
@@ -70,5 +143,4 @@
 </main>
 
 </body>
-
 </html>

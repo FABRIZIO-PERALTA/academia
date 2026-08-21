@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ca"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registrar-se | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/registro.css}">
+</head>
+
+<body>
+
+<main class="register-page">
+
+    <section class="register-container">
+
+        <!-- Logo de l'acadèmia -->
+        <div class="brand">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="brand-logo">
+
+        </div>
+
+
+        <!-- Targeta de registre -->
+        <div class="register-card">
+
+            <h1>Crear un compte</h1>
+
+            <p class="register-subtitle">
+                El registre està disponible per als alumnes
+                que ja han estat donats d'alta a l'acadèmia.
+            </p>
+
+
+            <form th:action="@{/registro}"
+                  th:object="${usuario}"
+                  method="post"
+                  class="register-form">
+
+
+                <!-- DNI -->
+                <div class="form-group">
+
+                    <label for="dni">
+                        DNI
+                    </label>
+
+                    <input
+                            type="text"
+                            id="dni"
+                            name="dni"
+                            th:value="${dni}"
+                            placeholder="Introdueix el teu DNI"
+                            required>
+
+                </div>
+
+
+                <!-- Usuari -->
+                <div class="form-group">
+
+                    <label for="username">
+                        Usuari
+                    </label>
+
+                    <input
+                            type="text"
+                            id="username"
+                            th:field="*{username}"
+                            autocomplete="username"
+                            placeholder="Tria un nom d'usuari"
+                            required>
+
+                </div>
+
+
+                <!-- Correu electrònic -->
+                <div class="form-group">
+
+                    <label for="email">
+                        Correu electrònic
+                    </label>
+
+                    <input
+                            type="email"
+                            id="email"
+                            th:field="*{email}"
+                            autocomplete="email"
+                            placeholder="Introdueix el teu correu"
+                            required>
+
+                </div>
+
+
+                <!-- Contrasenya -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Contrasenya
+                    </label>
+
+                    <input
+                            type="password"
+                            id="password"
+                            th:field="*{password}"
+                            autocomplete="new-password"
+                            placeholder="Crea una contrasenya"
+                            required>
+
+                </div>
+
+
+                <button
+                        type="submit"
+                        class="register-button">
+
+                    Crear compte
+
+                </button>
+
+            </form>
+
+
+            <!-- Error del registre -->
+            <div class="message error-message"
+                 th:if="${error}"
+                 th:text="${error}">
+            </div>
+
+
+            <!-- Tornar al login -->
+            <div class="login-section">
+
+                <p>
+                    Ja tens un compte?
+                </p>
+
+                <a th:href="@{/login}">
+                    Iniciar sessió
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,440 @@
+/* =========================================
+   VARIABLES
+   ========================================= */
+
+:root {
+
+    --primary-blue: #173B6C;
+    --primary-blue-dark: #102D54;
+
+    --primary-red: #D91E36;
+    --primary-red-hover: #B9182D;
+
+    --white: #FFFFFF;
+
+    --background: #F4F6F9;
+
+    --text-dark: #252525;
+    --text-secondary: #667085;
+
+    --border-color: #E1E5EA;
+}
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: var(--background);
+
+    color: var(--text-dark);
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.main-header {
+
+    width: 100%;
+
+    background-color: var(--primary-blue);
+
+    padding: 18px 40px;
+
+    box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.header-content {
+
+    width: 100%;
+
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+/* =========================================
+   ALUMNE + LOGO
+   ========================================= */
+
+.student-info {
+
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.header-logo {
+
+    width: 105px;
+    height: 105px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    background-color: white;
+}
+
+
+.welcome h1 {
+
+    color: var(--white);
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+
+.welcome p {
+
+    color: #E7ECF3;
+
+    font-size: 16px;
+}
+
+
+.welcome strong {
+
+    color: var(--white);
+}
+
+
+/* =========================================
+   LOGOUT
+   ========================================= */
+
+.logout-form {
+
+    margin: 0;
+}
+
+
+.logout-button {
+
+    padding: 11px 20px;
+
+    border: 2px solid var(--white);
+    border-radius: 7px;
+
+    background-color: transparent;
+
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+}
+
+
+.logout-button:hover {
+
+    background-color: var(--primary-red);
+
+    border-color: var(--primary-red);
+}
+
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+.main-content {
+
+    width: 100%;
+
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    padding: 50px 40px;
+}
+
+
+/* =========================================
+   SECCIÓN TEMAS
+   ========================================= */
+
+.section-header {
+
+    margin-bottom: 30px;
+}
+
+
+.section-header h2 {
+
+    color: var(--primary-blue);
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+
+.section-header p {
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   GRID
+   ========================================= */
+
+.topics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(230px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* =========================================
+   TARJETA DEL TEMA
+   ========================================= */
+
+.topic-card {
+
+    overflow: hidden;
+
+    background-color: var(--white);
+
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+
+    box-shadow:
+            0 5px 18px rgba(0, 0, 0, 0.08);
+
+    text-decoration: none;
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+}
+
+
+.topic-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   PARTE VISUAL DE LA TARJETA
+   ========================================= */
+
+.topic-card-visual {
+
+    height: 145px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--primary-blue);
+}
+
+
+.topic-letter {
+
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: var(--white);
+
+    color: var(--primary-red);
+
+    font-size: 36px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   TEXTO DE LA TARJETA
+   ========================================= */
+
+.topic-card-content {
+
+    padding: 20px;
+}
+
+
+.topic-card-content h3 {
+
+    color: var(--primary-blue);
+
+    font-size: 19px;
+
+    margin-bottom: 12px;
+}
+
+
+.topic-link {
+
+    color: var(--primary-red);
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   SIN TEMAS
+   ========================================= */
+
+.empty-message {
+
+    padding: 25px;
+
+    background-color: var(--white);
+
+    border-left: 5px solid var(--primary-red);
+
+    border-radius: 8px;
+
+    color: var(--text-secondary);
+
+    box-shadow:
+            0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .main-header {
+
+        padding: 15px 20px;
+    }
+
+
+    .header-content {
+
+        align-items: flex-start;
+    }
+
+
+    .student-info {
+
+        gap: 14px;
+    }
+
+
+    .header-logo {
+
+        width: 75px;
+        height: 75px;
+    }
+
+
+    .welcome h1 {
+
+        font-size: 21px;
+    }
+
+
+    .welcome p {
+
+        font-size: 14px;
+    }
+
+
+    .logout-button {
+
+        padding: 9px 12px;
+
+        font-size: 13px;
+    }
+
+
+    .main-content {
+
+        padding: 35px 20px;
+    }
+
+
+    .topics-grid {
+
+        grid-template-columns:
+            repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .header-content {
+
+        flex-direction: column;
+    }
+
+
+    .logout-form {
+
+        width: 100%;
+    }
+
+
+    .logout-button {
+
+        width: 100%;
+    }
+
+
+    .topics-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+}

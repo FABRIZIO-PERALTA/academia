@@ -1,67 +1,145 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Academia - Iniciar sesión</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar sessió | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/login.css}">
 </head>
 
 <body>
 
-<h1>Academia de Inglés</h1>
+<main class="login-page">
 
-<h2>Iniciar sesión</h2>
+    <section class="login-container">
 
-<form th:action="@{/login}" method="post">
+        <!-- Logo de l'acadèmia -->
+        <div class="brand">
 
-    <div>
-        <label for="username">
-            Usuario
-        </label>
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="brand-logo">
 
-        <input
-                type="text"
-                id="username"
-                name="username"
-                required
-        >
-    </div>
+        </div>
 
-    <div>
-        <label for="password">
-            Contraseña
-        </label>
 
-        <input
-                type="password"
-                id="password"
-                name="password"
-                required
-        >
-    </div>
+        <!-- Targeta d'inici de sessió -->
+        <div class="login-card">
 
-    <button type="submit">
-        Iniciar sesión
-    </button>
+            <h1>Iniciar sessió</h1>
 
-</form>
+            <p class="login-subtitle">
+                Accedeix a la teva aula virtual
+            </p>
 
-<p th:if="${param.error}">
-    Usuario o contraseña incorrectos.
-</p>
 
-<p th:if="${param.logout}">
-    Sesión cerrada correctamente.
-</p>
+            <form th:action="@{/login}"
+                  method="post"
+                  class="login-form">
 
-<p>
-    ¿Sos alumno y todavía no tenés cuenta?
-    <a th:href="@{/registro}">
-        Registrarse
-    </a>
-</p>
+
+                <!-- Usuari -->
+                <div class="form-group">
+
+                    <label for="username">
+                        Usuari
+                    </label>
+
+                    <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            autocomplete="username"
+                            placeholder="Introdueix el teu usuari"
+                            required>
+
+                </div>
+
+
+                <!-- Contrasenya -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Contrasenya
+                    </label>
+
+                    <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            autocomplete="current-password"
+                            placeholder="Introdueix la teva contrasenya"
+                            required>
+
+                </div>
+
+
+                <button
+                        type="submit"
+                        class="login-button">
+
+                    Iniciar sessió
+
+                </button>
+
+            </form>
+
+
+            <!-- Error d'autenticació -->
+            <div class="message error-message"
+                 th:if="${param.error}">
+
+                Usuari o contrasenya incorrectes.
+
+            </div>
+
+
+            <!-- Registre correcte -->
+            <div class="message success-message"
+                 th:if="${param.registroExitoso}">
+
+                Compte creat correctament.
+                Ja pots iniciar sessió.
+
+            </div>
+
+
+            <!-- Sessió tancada -->
+            <div class="message success-message"
+                 th:if="${param.logout}">
+
+                Sessió tancada correctament.
+
+            </div>
+
+
+            <!-- Registre -->
+            <div class="register-section">
+
+                <p>
+                    Ets alumne i encara no tens compte?
+                </p>
+
+                <a th:href="@{/registro}">
+                    Registrar-se
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 </body>
-
 </html>

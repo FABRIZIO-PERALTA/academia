@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle del curso</title>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Academia de Inglés</h1>
+
+    <a th:href="@{/docente/cursos}">
+        Volver a cursos
+    </a>
+
+    <a th:href="@{/docente/inicio}">
+        Volver al panel
+    </a>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">
+            Cerrar sesión
+        </button>
+    </form>
+
+</header>
+
+<main>
+
+    <section>
+
+        <h2>
+            Curso:
+            <span th:text="${curso.nivel}">
+                Nivel
+            </span>
+        </h2>
+
+    </section>
+
+
+    <section>
+
+        <h2>Alumnos</h2>
+
+        <p th:if="${#lists.isEmpty(alumnos)}">
+            Este curso todavía no tiene alumnos.
+        </p>
+
+        <ul th:if="${!#lists.isEmpty(alumnos)}">
+
+            <li th:each="alumno : ${alumnos}">
+
+                <span th:text="${alumno.nombre}">
+                    Nombre
+                </span>
+
+                <span th:text="${alumno.apellido}">
+                    Apellido
+                </span>
+
+            </li>
+
+        </ul>
+
+    </section>
+
+
+    <section>
+
+        <h2>Temas</h2>
+
+        <p th:if="${#lists.isEmpty(temas)}">
+            Este curso todavía no tiene temas.
+        </p>
+
+        <ul th:if="${!#lists.isEmpty(temas)}">
+
+            <li th:each="tema : ${temas}">
+                <span th:text="${tema.titulo}">
+                    Nombre del tema
+                </span>
+            </li>
+
+        </ul>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

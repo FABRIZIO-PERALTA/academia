@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Panel docente - Academia de Inglés</title>
+</head>
+
+<body>
+
+<header>
+
+    <h1>Academia de Inglés</h1>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">
+            Cerrar sesión
+        </button>
+    </form>
+
+</header>
+
+
+<main>
+
+    <section>
+
+        <h2 th:text="'Bienvenido, ' + ${username}">
+            Bienvenido
+        </h2>
+
+        <p>Panel docente</p>
+
+    </section>
+
+
+    <section>
+
+        <h2>¿Qué querés hacer?</h2>
+
+
+        <article>
+
+            <h3>Añadir tema</h3>
+
+            <p>
+                Crear un nuevo tema para uno de los cursos.
+            </p>
+
+            <a th:href="@{/docente/temas/nuevo}">
+                Añadir tema
+            </a>
+
+        </article>
+
+
+        <article>
+
+            <h3>Añadir recurso</h3>
+
+            <p>
+                Agregar videos, actividades o juegos
+                a los temas de los cursos.
+            </p>
+
+            <a th:href="@{/docente/recursos/nuevo}">
+                Añadir recurso
+            </a>
+
+        </article>
+
+
+        <article>
+
+            <h3>Ver cursos</h3>
+
+            <p>
+                Consultar los cursos, sus alumnos y sus temas.
+            </p>
+
+            <a th:href="@{/docente/cursos}">
+                Ver cursos
+            </a>
+
+        </article>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

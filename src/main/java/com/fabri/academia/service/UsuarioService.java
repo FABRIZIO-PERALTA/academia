@@ -31,25 +31,31 @@ public class UsuarioService {
 
         if (usuarioRepository.existsByUsername(usuario.getUsername())) {
             throw new IllegalArgumentException(
-                    "El nombre de usuario ya está registrado"
+                    "El nom d'usuari ja està registrat"
             );
         }
 
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new IllegalArgumentException(
-                    "El email ya está registrado"
+                    "El correu electrònic ja està registrat"
             );
         }
 
         Alumno alumno = alumnoRepository.findByDni(dni).orElseThrow(() ->
                         new IllegalArgumentException(
-                                "No existe un alumno registrado con ese DNI"
+                                "No existeix cap alumne registrat amb aquest DNI"
                         )
                 );
 
         if (alumno.getUsuario() != null) {
             throw new IllegalArgumentException(
-                    "Este alumno ya tiene una cuenta registrada"
+                    "Aquest alumne ja té un compte registrat"
+            );
+        }
+
+        if (dni == null || dni.isBlank()) {
+            throw new RuntimeException(
+                    "Has d'introduir el DNI"
             );
         }
 
