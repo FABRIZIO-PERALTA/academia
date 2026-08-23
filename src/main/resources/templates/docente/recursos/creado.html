@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ca"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Recurs creat | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/docente-recurso.css}">
+</head>
+
+<body>
+
+<header class="main-header">
+
+    <div class="header-content">
+
+        <div class="header-left">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div>
+                <h1>Afegir recurs</h1>
+                <p>Panell docent</p>
+            </div>
+
+        </div>
+
+
+        <form th:action="@{/logout}"
+              method="post">
+
+            <button
+                    type="submit"
+                    class="logout-button">
+
+                Tancar sessió
+
+            </button>
+
+        </form>
+
+    </div>
+
+</header>
+
+
+<main class="main-content">
+
+    <section class="success-card">
+
+        <div class="success-circle">
+            ✓
+        </div>
+
+        <h2>
+            Recurs creat correctament
+        </h2>
+
+        <p>
+            El recurs s'ha afegit correctament
+            al tema seleccionat.
+        </p>
+
+
+        <div class="success-actions">
+
+            <a th:href="@{/docente/inicio}"
+               class="btn-secondary">
+
+                Tornar al panell
+
+            </a>
+
+
+            <a th:href="@{/docente/recursos/nuevo}"
+               class="btn-primary">
+
+                Afegir un altre recurs
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

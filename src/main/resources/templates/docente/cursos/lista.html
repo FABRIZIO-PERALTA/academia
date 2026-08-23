@@ -1,56 +1,124 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="UTF-8">
-    <title>Cursos</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Veure cursos | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/docente-cursos.css}">
+
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
-    <h1>Academia de Inglés</h1>
+    <div class="header-content">
 
-    <a th:href="@{/docente/inicio}">
-        Volver al panel
-    </a>
+        <div class="header-left">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div>
+
+                <h1>Veure cursos</h1>
+
+                <p>Panell docent</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a th:href="@{/docente/inicio}"
+               class="back-button">
+
+                Tornar al panell
+
+            </a>
+
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button
+                        type="submit"
+                        class="logout-button">
+
+                    Tancar sessió
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </header>
 
-<main>
 
-    <h2>Cursos</h2>
+<main class="main-content">
 
-    <p>
-        Seleccioná un curso para ver sus alumnos y temas.
-    </p>
+    <section class="courses-section">
 
-    <div th:each="curso : ${cursos}">
+        <div class="section-header">
 
-        <a th:href="@{/docente/cursos/{id}(id=${curso.id})}">
+            <h2>Cursos</h2>
 
-            <article>
+            <p>
+                Selecciona un curs per consultar
+                els seus alumnes i temes.
+            </p>
 
-                <h3 th:text="${curso.nivel}">
-                    Nivel del curso
-                </h3>
+        </div>
 
-            </article>
 
-        </a>
+        <div class="courses-grid">
 
-    </div>
+            <a
+                    th:each="curso : ${cursos}"
+                    th:href="@{/docente/cursos/{id}(id=${curso.id})}"
+                    class="course-card">
+
+                <div class="course-content">
+
+                    <h3>
+                        Curs
+                        <span th:text="${curso.nivel}">
+                            A1
+                        </span>
+                    </h3>
+
+                    <p>
+                        Veure alumnes i temes
+                    </p>
+
+                </div>
+
+                <span class="course-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
 
 </main>
 
 </body>
-
 </html>

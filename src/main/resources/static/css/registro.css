@@ -152,6 +152,65 @@ body {
 
 
 /* =========================================
+   MENSAJE DE ERROR
+   ========================================= */
+
+.message {
+
+    margin-bottom: 22px;
+
+    padding: 12px 14px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+
+.error-message {
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    background-color: var(--error-background);
+
+    color: var(--error-text);
+
+    border: 1px solid #F0B8BE;
+
+    font-weight: 600;
+
+    text-align: left;
+}
+
+
+.error-icon {
+
+    width: 24px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: var(--primary-red);
+
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* =========================================
    FORMULARIO
    ========================================= */
 
@@ -222,6 +281,22 @@ body {
 
 
 /* =========================================
+   AYUDA CONTRASEÑA
+   ========================================= */
+
+.password-help {
+
+    margin-top: 2px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
    BOTÓN PRINCIPAL
    ========================================= */
 
@@ -237,6 +312,7 @@ body {
     border-radius: 7px;
 
     background-color: var(--primary-red);
+
     color: var(--white);
 
     font-size: 16px;
@@ -259,34 +335,6 @@ body {
 .register-button:active {
 
     transform: scale(0.99);
-}
-
-
-/* =========================================
-   MENSAJE DE ERROR
-   ========================================= */
-
-.message {
-
-    margin-top: 20px;
-
-    padding: 11px 12px;
-
-    border-radius: 7px;
-
-    text-align: center;
-
-    font-size: 14px;
-
-    line-height: 1.4;
-}
-
-
-.error-message {
-
-    background-color: var(--error-background);
-
-    color: var(--error-text);
 }
 
 
@@ -362,6 +410,12 @@ body {
     .register-card h1 {
 
         font-size: 23px;
+    }
+
+
+    .error-message {
+
+        align-items: flex-start;
     }
 
 }

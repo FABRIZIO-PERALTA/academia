@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ca"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tema creat | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin-tema.css}">
+
+</head>
+
+<body>
+
+<header class="main-header">
+
+    <div class="header-content">
+
+        <div class="header-left">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div>
+
+                <h1>Afegir tema</h1>
+
+                <p>
+                    Panell d'administració
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form th:action="@{/logout}"
+              method="post">
+
+            <button
+                    type="submit"
+                    class="logout-button">
+
+                Tancar sessió
+
+            </button>
+
+        </form>
+
+    </div>
+
+</header>
+
+
+<main class="main-content">
+
+    <section class="success-card">
+
+        <div class="success-circle">
+            ✓
+        </div>
+
+        <h2>
+            Tema creat correctament
+        </h2>
+
+        <p>
+            El tema s'ha afegit correctament
+            al curs seleccionat.
+        </p>
+
+
+        <div class="success-actions">
+
+            <a
+                    th:href="@{/admin/inicio}"
+                    class="btn-secondary">
+
+                Tornar al panell
+
+            </a>
+
+
+            <a
+                    th:href="@{/admin/temas/nuevo}"
+                    class="btn-primary">
+
+                Afegir un altre tema
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

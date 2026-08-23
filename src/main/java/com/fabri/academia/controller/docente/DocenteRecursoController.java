@@ -78,6 +78,11 @@ public class DocenteRecursoController {
 
         recursoService.crearRecurso(recurso, temaId);
 
-        return "redirect:/docente/inicio";
+        return "redirect:/docente/recursos/creado";
+    }
+
+    @GetMapping("/creado")
+    public String recursoCreado() {
+        return "docente/recursos/creado";
     }
 }

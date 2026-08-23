@@ -29,6 +29,12 @@ public class UsuarioService {
     @Transactional
     public Usuario registrarAlumno(Usuario usuario, String dni) {
 
+        if (dni == null || dni.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Has d'introduir el DNI"
+            );
+        }
+
         if (usuarioRepository.existsByUsername(usuario.getUsername())) {
             throw new IllegalArgumentException(
                     "El nom d'usuari ja està registrat"
@@ -41,7 +47,8 @@ public class UsuarioService {
             );
         }
 
-        Alumno alumno = alumnoRepository.findByDni(dni).orElseThrow(() ->
+        Alumno alumno = alumnoRepository.findByDni(dni)
+                .orElseThrow(() ->
                         new IllegalArgumentException(
                                 "No existeix cap alumne registrat amb aquest DNI"
                         )
@@ -53,20 +60,46 @@ public class UsuarioService {
             );
         }
 
-        if (dni == null || dni.isBlank()) {
-            throw new RuntimeException(
-                    "Has d'introduir el DNI"
-            );
-        }
+        validarPassword(usuario.getPassword());
 
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        usuario.setPassword(
+                passwordEncoder.encode(usuario.getPassword())
+        );
 
         usuario.setRol(Rol.ALUMNO);
 
-        Usuario usuarioGuardado = usuarioRepository.save(usuario);
+        Usuario usuarioGuardado =
+                usuarioRepository.save(usuario);
 
         alumno.setUsuario(usuarioGuardado);
 
         return usuarioGuardado;
+    }
+
+    private void validarPassword(String password) {
+
+        if (password == null || password.length() < 8) {
+            throw new IllegalArgumentException(
+                    "La contrasenya ha de tenir almenys 8 caràcters"
+            );
+        }
+
+        if (!password.matches(".*[A-Z].*")) {
+            throw new IllegalArgumentException(
+                    "La contrasenya ha de contenir almenys una lletra majúscula"
+            );
+        }
+
+        if (!password.matches(".*[a-z].*")) {
+            throw new IllegalArgumentException(
+                    "La contrasenya ha de contenir almenys una lletra minúscula"
+            );
+        }
+
+        if (!password.matches(".*\\d.*")) {
+            throw new IllegalArgumentException(
+                    "La contrasenya ha de contenir almenys un número"
+            );
+        }
     }
 }

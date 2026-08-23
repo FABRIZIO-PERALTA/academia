@@ -1,184 +1,280 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="UTF-8">
-    <title>Añadir recurso</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Afegir recurs | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin-recurso.css}">
+
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
-    <h1>Academia de Inglés</h1>
+    <div class="header-content">
 
-    <a th:href="@{/admin/inicio}">
-        Volver al panel
-    </a>
+        <div class="header-left">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div>
+
+                <h1>Afegir recurs</h1>
+
+                <p>
+                    Panell d'administració
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a th:href="@{/admin/inicio}"
+               class="back-button">
+
+                Tornar al panell
+
+            </a>
+
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button
+                        type="submit"
+                        class="logout-button">
+
+                    Tancar sessió
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </header>
 
 
-<main>
+<main class="main-content">
 
-    <h2>Añadir recurso</h2>
+    <section class="form-card">
 
+        <div class="form-header">
 
+            <h2>Nou recurs</h2>
 
-    <section>
+            <p>
+                Selecciona primer el curs i després
+                afegeix el recurs al tema corresponent.
+            </p>
 
-        <h3>1. Seleccionar curso</h3>
-
-        <form th:action="@{/admin/recursos/nuevo}"
-              method="get">
-
-            <select name="cursoId" required>
-
-                <option value="">
-                    Seleccionar curso
-                </option>
-
-                <option
-                        th:each="curso : ${cursos}"
-                        th:value="${curso.id}"
-                        th:text="${curso.nivel}"
-                        th:selected="${cursoSeleccionado != null
-                                     and curso.id == cursoSeleccionado.id}">
-                </option>
-
-            </select>
-
-            <button type="submit">
-                Continuar
-            </button>
-
-        </form>
-
-    </section>
+        </div>
 
 
+        <!-- =========================
+             PAS 1: CURS
+             ========================= -->
 
-    <section th:if="${cursoSeleccionado != null}">
+        <div class="form-step">
 
-        <h3>
-            2. Añadir recurso al curso
-            <span th:text="${cursoSeleccionado.nivel}">
-                Curso
-            </span>
-        </h3>
+            <h3>1. Selecciona el curs</h3>
+
+            <form
+                    th:action="@{/admin/recursos/nuevo}"
+                    method="get"
+                    class="course-form">
+
+                <div class="form-group">
+
+                    <label for="cursoId">
+                        Curs
+                    </label>
+
+                    <select
+                            id="cursoId"
+                            name="cursoId"
+                            required>
+
+                        <option value="">
+                            Selecciona un curs
+                        </option>
+
+                        <option
+                                th:each="curso : ${cursos}"
+                                th:value="${curso.id}"
+                                th:text="${curso.nivel}"
+                                th:selected="${cursoSeleccionado != null
+                                             and curso.id == cursoSeleccionado.id}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button
+                        type="submit"
+                        class="continue-button">
+
+                    Continuar
+
+                </button>
+
+            </form>
+
+        </div>
 
 
-        <p th:if="${#lists.isEmpty(temas)}">
-            Este curso todavía no tiene temas cargados.
-        </p>
+        <!-- =========================
+             PAS 2: RECURS
+             ========================= -->
 
+        <div
+                class="form-step resource-step"
+                th:if="${cursoSeleccionado != null}">
 
-        <form th:if="${!#lists.isEmpty(temas)}"
-              th:action="@{/admin/recursos/nuevo}"
-              th:object="${recurso}"
-              method="post">
+            <div class="selected-course">
 
-            <div>
+                Curs seleccionat:
 
-                <label for="temaId">
-                    Tema
-                </label>
-
-                <select
-                        id="temaId"
-                        name="temaId"
-                        required>
-
-                    <option value="">
-                        Seleccionar tema
-                    </option>
-
-                    <option
-                            th:each="tema : ${temas}"
-                            th:value="${tema.id}"
-                            th:text="${tema.titulo}">
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div>
-
-                <label for="tipo">
-                    Tipo de recurso
-                </label>
-
-                <select
-                        id="tipo"
-                        th:field="*{tipo}"
-                        required>
-
-                    <option value="">
-                        Seleccionar tipo
-                    </option>
-
-                    <option
-                            th:each="tipo : ${tiposRecurso}"
-                            th:value="${tipo}"
-                            th:text="${tipo}">
-                    </option>
-
-                </select>
+                <strong th:text="${cursoSeleccionado.nivel}">
+                    A1
+                </strong>
 
             </div>
 
 
-            <div>
+            <p class="empty-message"
+               th:if="${#lists.isEmpty(temas)}">
 
-                <label for="titulo">
-                    Título
-                </label>
+                Aquest curs encara no té temes disponibles.
 
-                <input
-                        type="text"
-                        id="titulo"
-                        th:field="*{titulo}"
-                        required
-                >
-
-            </div>
+            </p>
 
 
-            <div>
-
-                <label for="url">
-                    URL
-                </label>
-
-                <input
-                        type="url"
-                        id="url"
-                        th:field="*{url}"
-                        required
-                >
-
-            </div>
+            <form
+                    th:if="${!#lists.isEmpty(temas)}"
+                    th:action="@{/admin/recursos/nuevo}"
+                    th:object="${recurso}"
+                    method="post"
+                    class="resource-form">
 
 
-            <button type="submit">
-                Guardar recurso
-            </button>
+                <div class="form-group">
 
-        </form>
+                    <label for="temaId">
+                        Tema
+                    </label>
+
+                    <select
+                            id="temaId"
+                            name="temaId"
+                            required>
+
+                        <option value="">
+                            Selecciona un tema
+                        </option>
+
+                        <option
+                                th:each="tema : ${temas}"
+                                th:value="${tema.id}"
+                                th:text="${tema.titulo}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="tipo">
+                        Tipus de recurs
+                    </label>
+
+                    <select
+                            id="tipo"
+                            th:field="*{tipo}"
+                            required>
+
+                        <option value="">
+                            Selecciona un tipus
+                        </option>
+
+                        <option
+                                th:each="tipo : ${tiposRecurso}"
+                                th:value="${tipo}"
+                                th:text="${tipo}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="titulo">
+                        Títol
+                    </label>
+
+                    <input
+                            type="text"
+                            id="titulo"
+                            th:field="*{titulo}"
+                            placeholder="Introdueix el títol del recurs"
+                            required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="url">
+                        URL
+                    </label>
+
+                    <input
+                            type="url"
+                            id="url"
+                            th:field="*{url}"
+                            placeholder="https://..."
+                            required>
+
+                </div>
+
+
+                <button
+                        type="submit"
+                        class="save-button">
+
+                    Desar recurs
+
+                </button>
+
+            </form>
+
+        </div>
 
     </section>
 
 </main>
 
 </body>
-
 </html>

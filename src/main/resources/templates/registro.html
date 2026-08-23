@@ -43,6 +43,22 @@
             </p>
 
 
+            <!-- Error del registre -->
+            <div class="message error-message"
+                 th:if="${error}">
+
+                <span class="error-icon">
+                    !
+                </span>
+
+                <span th:text="${error}">
+                    Error
+                </span>
+
+            </div>
+
+
+            <!-- Formulari -->
             <form th:action="@{/registro}"
                   th:object="${usuario}"
                   method="post"
@@ -118,9 +134,15 @@
                             placeholder="Crea una contrasenya"
                             required>
 
+                    <p class="password-help">
+                        Mínim 8 caràcters, una majúscula,
+                        una minúscula i un número.
+                    </p>
+
                 </div>
 
 
+                <!-- Crear compte -->
                 <button
                         type="submit"
                         class="register-button">
@@ -130,13 +152,6 @@
                 </button>
 
             </form>
-
-
-            <!-- Error del registre -->
-            <div class="message error-message"
-                 th:if="${error}"
-                 th:text="${error}">
-            </div>
 
 
             <!-- Tornar al login -->

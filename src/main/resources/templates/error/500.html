@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ca"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Error intern | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/error.css}">
+
+</head>
+
+<body>
+
+<main class="error-page">
+
+    <section class="error-card">
+
+        <img
+                th:src="@{/images/logo.jpeg}"
+                alt="Too Cool for School"
+                class="error-logo">
+
+
+        <span class="error-code">
+            500
+        </span>
+
+
+        <h1>
+            S'ha produït un error
+        </h1>
+
+
+        <p>
+            Hi ha hagut un problema inesperat.
+            Torna-ho a provar d'aquí a uns instants.
+        </p>
+
+
+        <a th:href="@{/login}"
+           class="primary-button">
+
+            Tornar a l'inici de sessió
+
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

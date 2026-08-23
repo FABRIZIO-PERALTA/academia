@@ -78,6 +78,13 @@ public class AdminRecursoController {
 
         recursoService.crearRecurso(recurso, temaId);
 
-        return "redirect:/admin/inicio";
+        return "redirect:/admin/recursos/creado";
     }
+
+    @GetMapping("/creado")
+    public String recursoCreado() {
+
+        return "admin/recursos/creado";
+    }
+
 }

@@ -28,9 +28,30 @@ public class AlumnoService {
     @Transactional
     public Alumno crearAlumno(Alumno alumno, Long cursoId) {
 
+        Optional<Alumno> alumnoExistente =
+                alumnoRepository.findByDni(alumno.getDni());
+
+        if (alumnoExistente.isPresent()) {
+
+            Alumno existente = alumnoExistente.get();
+
+            throw new IllegalArgumentException(
+                    "Ja existeix l'alumne "
+                            + existente.getNombre()
+                            + " "
+                            + existente.getApellido()
+                            + " amb aquest DNI. Pertany al curs "
+                            + existente.getCurso().getNivel()
+                            + "."
+            );
+        }
+
         Curso curso = cursoRepository.findById(cursoId)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("El curso no existe"));
+                        new IllegalArgumentException(
+                                "El curs seleccionat no existeix"
+                        )
+                );
 
         alumno.setCurso(curso);
 

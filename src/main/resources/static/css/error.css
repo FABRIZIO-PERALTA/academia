@@ -1,0 +1,174 @@
+:root {
+
+    --primary-blue: #173B6C;
+    --primary-red: #D91E36;
+    --primary-red-hover: #B9182D;
+
+    --white: #FFFFFF;
+
+    --background: #F4F6F9;
+
+    --text-dark: #252525;
+    --text-secondary: #667085;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: var(--primary-blue);
+}
+
+
+.error-page {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 20px;
+}
+
+
+.error-card {
+
+    width: 100%;
+    max-width: 520px;
+
+    padding: 40px;
+
+    background-color: var(--white);
+
+    border-radius: 14px;
+
+    border-top: 6px solid var(--primary-red);
+
+    box-shadow:
+            0 12px 35px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+}
+
+
+.error-logo {
+
+    width: 180px;
+    max-width: 70%;
+
+    height: auto;
+
+    margin-bottom: 25px;
+
+    border-radius: 10px;
+}
+
+
+.error-code {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary-red);
+
+    font-size: 48px;
+    font-weight: 800;
+}
+
+
+.error-card h1 {
+
+    margin-bottom: 12px;
+
+    color: var(--primary-blue);
+
+    font-size: 27px;
+}
+
+
+.error-card p {
+
+    margin-bottom: 28px;
+
+    color: var(--text-secondary);
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+.primary-button {
+
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    border-radius: 7px;
+
+    background-color: var(--primary-red);
+
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+            background-color 0.2s ease;
+}
+
+
+.primary-button:hover {
+
+    background-color: var(--primary-red-hover);
+}
+
+
+@media (max-width: 500px) {
+
+    .error-card {
+
+        padding: 30px 22px;
+    }
+
+
+    .error-logo {
+
+        width: 150px;
+    }
+
+
+    .error-code {
+
+        font-size: 42px;
+    }
+
+
+    .error-card h1 {
+
+        font-size: 23px;
+    }
+
+
+    .primary-button {
+
+        width: 100%;
+    }
+
+}

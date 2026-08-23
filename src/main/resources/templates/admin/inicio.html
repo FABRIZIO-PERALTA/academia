@@ -1,115 +1,136 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Panel Administrador - Academia de Inglés</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Panell d'administració | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin-inicio.css}">
 </head>
 
 <body>
 
+<header class="main-header">
 
-<header>
+    <div class="header-content">
 
-    <h1>Academia de Inglés</h1>
+        <div class="admin-info">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div class="welcome">
+
+                <h1 th:text="'Benvingut, ' + ${nombreAdministrador} + '!'">
+                    Benvingut!
+                </h1>
+
+                <p>
+                    Panell d'administració
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form th:action="@{/logout}"
+              method="post"
+              class="logout-form">
+
+            <button
+                    type="submit"
+                    class="logout-button">
+
+                Tancar sessió
+
+            </button>
+
+        </form>
+
+    </div>
 
 </header>
 
 
-<main>
+<main class="main-content">
 
-    <section>
+    <section class="admin-actions">
 
-        <h2 th:text="'Bienvenido, ' + ${nombreAdministrador}">
-            Bienvenido
-        </h2>
+        <div class="section-header">
 
-        <p>
-            Panel de administración
-        </p>
-
-    </section>
-
-
-    <section>
-
-        <h2>¿Qué querés hacer?</h2>
-
-
-        <article>
-
-            <h3>Añadir alumno</h3>
+            <h2>Què vols fer?</h2>
 
             <p>
-                Registrar un nuevo alumno y asignarlo
-                a uno de los cursos de la academia.
+                Gestiona els alumnes, temes, recursos i cursos de l'acadèmia.
             </p>
 
-            <a th:href="@{/admin/alumnos/nuevo}">
-                Añadir alumno
+        </div>
+
+
+        <div class="actions-list">
+
+            <a th:href="@{/admin/alumnos/nuevo}"
+               class="action-card">
+
+                <div class="action-content">
+                    <h3>Afegir alumne</h3>
+                    <p>Dona d'alta un alumne nou i assigna'l a un curs.</p>
+                </div>
+
+                <span class="action-arrow">→</span>
             </a>
 
-        </article>
 
+            <a th:href="@{/admin/temas/nuevo}"
+               class="action-card">
 
-        <article>
+                <div class="action-content">
+                    <h3>Afegir tema</h3>
+                    <p>Crea un tema nou i associa'l al curs corresponent.</p>
+                </div>
 
-            <h3>Añadir tema</h3>
-
-            <p>
-                Crear un nuevo tema y asociarlo
-                a uno de los cursos de la academia.
-            </p>
-
-            <a th:href="@{/admin/temas/nuevo}">
-                Añadir tema
+                <span class="action-arrow">→</span>
             </a>
 
-        </article>
 
+            <a th:href="@{/admin/recursos/nuevo}"
+               class="action-card">
 
-        <article>
+                <div class="action-content">
+                    <h3>Afegir recurs</h3>
+                    <p>Afegeix vídeos, activitats o jocs als temes.</p>
+                </div>
 
-            <h3>Añadir recurso</h3>
-
-            <p>
-                Agregar videos, actividades o juegos
-                a los temas de los cursos.
-            </p>
-
-            <a th:href="@{/admin/recursos/nuevo}">
-                Añadir recurso
+                <span class="action-arrow">→</span>
             </a>
 
-        </article>
 
+            <a th:href="@{/admin/cursos}"
+               class="action-card">
 
-        <article>
+                <div class="action-content">
+                    <h3>Veure cursos</h3>
+                    <p>Consulta els cursos, els alumnes i els temes disponibles.</p>
+                </div>
 
-            <h3>Ver cursos</h3>
-
-            <p>
-                Consultar los cursos disponibles
-                y los alumnos que pertenecen a cada uno.
-            </p>
-
-            <a th:href="@{/admin/cursos}">
-                Ver cursos
+                <span class="action-arrow">→</span>
             </a>
 
-        </article>
+        </div>
 
     </section>
 
 </main>
 
 </body>
-
 </html>

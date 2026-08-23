@@ -5,10 +5,7 @@ import com.fabri.academia.service.AlumnoService;
 import com.fabri.academia.service.CursoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/admin/alumnos")
@@ -43,11 +40,32 @@ public class AdminAlumnoController {
 
     @PostMapping("/nuevo")
     public String crearAlumno(
-            Alumno alumno,
-            @RequestParam Long cursoId) {
+            @ModelAttribute("alumno") Alumno alumno,
+            @RequestParam Long cursoId,
+            Model model) {
 
-        alumnoService.crearAlumno(alumno, cursoId);
+        try {
 
-        return "redirect:/admin/inicio";
+            alumnoService.crearAlumno(alumno, cursoId);
+
+            return "redirect:/admin/alumnos/creado";
+
+        } catch (IllegalArgumentException e) {
+
+            model.addAttribute("error", e.getMessage());
+
+            model.addAttribute(
+                    "cursos",
+                    cursoService.obtenerCursos()
+            );
+
+            return "admin/alumno/nuevo";
+        }
     }
+
+    @GetMapping("/creado")
+    public String alumnoCreado() {
+        return "admin/alumno/creado";
+    }
+
 }

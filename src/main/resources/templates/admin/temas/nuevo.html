@@ -1,110 +1,179 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="UTF-8">
-    <title>Añadir tema</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Afegir tema | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin-tema.css}">
+
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
-    <h1>Academia de Inglés</h1>
+    <div class="header-content">
 
-    <a th:href="@{/admin/inicio}">
-        Volver al panel
-    </a>
+        <div class="header-left">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div>
+
+                <h1>Afegir tema</h1>
+
+                <p>
+                    Panell d'administració
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a th:href="@{/admin/inicio}"
+               class="back-button">
+
+                Tornar al panell
+
+            </a>
+
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button
+                        type="submit"
+                        class="logout-button">
+
+                    Tancar sessió
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </header>
 
-<main>
 
-    <h2>Añadir tema</h2>
+<main class="main-content">
 
-    <form th:action="@{/admin/temas/nuevo}"
-          th:object="${tema}"
-          method="post">
+    <section class="form-card">
 
-        <div>
+        <div class="form-header">
 
-            <label for="cursoId">
-                Curso
-            </label>
+            <h2>Nou tema</h2>
 
-            <select
-                    id="cursoId"
-                    name="cursoId"
-                    required>
-
-                <option value="">
-                    Seleccionar curso
-                </option>
-
-                <option
-                        th:each="curso : ${cursos}"
-                        th:value="${curso.id}"
-                        th:text="${curso.nivel}">
-                </option>
-
-            </select>
+            <p>
+                Selecciona el curs i introdueix
+                les dades del tema.
+            </p>
 
         </div>
 
 
-        <div>
-
-            <label for="titulo">
-                Título
-            </label>
-
-            <input
-                    type="text"
-                    id="titulo"
-                    th:field="*{titulo}"
-                    required
-            >
-
-        </div>
+        <form
+                th:action="@{/admin/temas/nuevo}"
+                th:object="${tema}"
+                method="post"
+                class="tema-form">
 
 
-        <div>
+            <div class="form-group">
 
-            <label for="dificultad">
-                Dificultad
-            </label>
+                <label for="cursoId">
+                    Curs
+                </label>
 
-            <select
-                    id="dificultad"
-                    th:field="*{dificultad}"
-                    required>
+                <select
+                        id="cursoId"
+                        name="cursoId"
+                        required>
 
-                <option value="">
-                    Seleccionar dificultad
-                </option>
+                    <option value="">
+                        Selecciona un curs
+                    </option>
 
-                <option
-                        th:each="dificultad : ${dificultades}"
-                        th:value="${dificultad}"
-                        th:text="${dificultad}">
-                </option>
+                    <option
+                            th:each="curso : ${cursos}"
+                            th:value="${curso.id}"
+                            th:text="${curso.nivel}">
+                    </option>
 
-            </select>
+                </select>
 
-        </div>
+            </div>
 
-        <button type="submit">
-            Guardar tema
-        </button>
 
-    </form>
+            <div class="form-group">
+
+                <label for="titulo">
+                    Títol
+                </label>
+
+                <input
+                        type="text"
+                        id="titulo"
+                        th:field="*{titulo}"
+                        placeholder="Introdueix el títol del tema"
+                        required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="dificultad">
+                    Dificultat
+                </label>
+
+                <select
+                        id="dificultad"
+                        th:field="*{dificultad}"
+                        required>
+
+                    <option value="">
+                        Selecciona una dificultat
+                    </option>
+
+                    <option
+                            th:each="dificultad : ${dificultades}"
+                            th:value="${dificultad}"
+                            th:text="${dificultad}">
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                    type="submit"
+                    class="save-button">
+
+                Desar tema
+
+            </button>
+
+        </form>
+
+    </section>
 
 </main>
 

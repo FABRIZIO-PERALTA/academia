@@ -51,6 +51,11 @@ public class DocenteTemaController {
 
         temaService.crearTema(tema, cursoId);
 
-        return "redirect:/docente/inicio";
+        return "redirect:/docente/temas/creado";
+    }
+
+    @GetMapping("/creado")
+    public String temaCreado() {
+        return "docente/temas/creado";
     }
 }

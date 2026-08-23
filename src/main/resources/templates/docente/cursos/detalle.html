@@ -1,97 +1,203 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="UTF-8">
-    <title>Detalle del curso</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Detall del curs | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/docente-cursos.css}">
+
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
-    <h1>Academia de Inglés</h1>
+    <div class="header-content">
 
-    <a th:href="@{/docente/cursos}">
-        Volver a cursos
-    </a>
+        <div class="header-left">
 
-    <a th:href="@{/docente/inicio}">
-        Volver al panel
-    </a>
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    alt="Too Cool for School"
+                    class="header-logo">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+            <div>
+
+                <h1>
+                    Curs
+                    <span th:text="${curso.nivel}">
+                        A1
+                    </span>
+                </h1>
+
+                <p>Panell docent</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a th:href="@{/docente/cursos}"
+               class="back-button">
+
+                Tornar als cursos
+
+            </a>
+
+
+            <a th:href="@{/docente/inicio}"
+               class="back-button secondary-back">
+
+                Tornar al panell
+
+            </a>
+
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button
+                        type="submit"
+                        class="logout-button">
+
+                    Tancar sessió
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </header>
 
-<main>
 
-    <section>
+<main class="main-content">
 
-        <h2>
-            Curso:
-            <span th:text="${curso.nivel}">
-                Nivel
-            </span>
-        </h2>
+    <section class="course-detail">
 
-    </section>
+        <div class="course-title">
 
+            <div>
 
-    <section>
+                <h2>
+                    Informació del curs
+                </h2>
 
-        <h2>Alumnos</h2>
+                <p>
+                    Consulta els alumnes i els temes
+                    associats a aquest curs.
+                </p>
 
-        <p th:if="${#lists.isEmpty(alumnos)}">
-            Este curso todavía no tiene alumnos.
-        </p>
+            </div>
 
-        <ul th:if="${!#lists.isEmpty(alumnos)}">
-
-            <li th:each="alumno : ${alumnos}">
-
-                <span th:text="${alumno.nombre}">
-                    Nombre
-                </span>
-
-                <span th:text="${alumno.apellido}">
-                    Apellido
-                </span>
-
-            </li>
-
-        </ul>
-
-    </section>
+        </div>
 
 
-    <section>
+        <div class="detail-grid">
 
-        <h2>Temas</h2>
 
-        <p th:if="${#lists.isEmpty(temas)}">
-            Este curso todavía no tiene temas.
-        </p>
+            <section class="detail-card">
 
-        <ul th:if="${!#lists.isEmpty(temas)}">
+                <div class="detail-card-header">
 
-            <li th:each="tema : ${temas}">
-                <span th:text="${tema.titulo}">
-                    Nombre del tema
-                </span>
-            </li>
+                    <h3>Alumnes</h3>
 
-        </ul>
+                    <span class="count-badge"
+                          th:text="${#lists.size(alumnos)}">
+                        0
+                    </span>
+
+                </div>
+
+
+                <p class="empty-message"
+                   th:if="${#lists.isEmpty(alumnos)}">
+
+                    Aquest curs encara no té alumnes.
+
+                </p>
+
+
+                <ul class="item-list"
+                    th:if="${!#lists.isEmpty(alumnos)}">
+
+                    <li th:each="alumno : ${alumnos}">
+
+                        <div class="item-marker"></div>
+
+                        <span>
+                            <strong th:text="${alumno.nombre}">
+                                Nom
+                            </strong>
+
+                            <span th:text="${alumno.apellido}">
+                                Cognoms
+                            </span>
+                        </span>
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <section class="detail-card">
+
+                <div class="detail-card-header">
+
+                    <h3>Temes</h3>
+
+                    <span class="count-badge"
+                          th:text="${#lists.size(temas)}">
+                        0
+                    </span>
+
+                </div>
+
+
+                <p class="empty-message"
+                   th:if="${#lists.isEmpty(temas)}">
+
+                    Aquest curs encara no té temes.
+
+                </p>
+
+
+                <ul class="item-list"
+                    th:if="${!#lists.isEmpty(temas)}">
+
+                    <li th:each="tema : ${temas}">
+
+                        <div class="item-marker red"></div>
+
+                        <span th:text="${tema.titulo}">
+                            Nom del tema
+                        </span>
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </div>
 
     </section>
 
 </main>
 
 </body>
-
 </html>

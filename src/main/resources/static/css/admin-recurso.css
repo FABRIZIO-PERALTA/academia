@@ -1,0 +1,693 @@
+:root {
+
+    --primary-blue: #173B6C;
+    --primary-red: #D91E36;
+    --primary-red-hover: #B9182D;
+
+    --white: #FFFFFF;
+    --background: #F4F6F9;
+
+    --text-dark: #252525;
+    --text-secondary: #667085;
+
+    --border-color: #DCE2EA;
+}
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: var(--background);
+
+    color: var(--text-dark);
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.main-header {
+
+    width: 100%;
+
+    background-color: var(--primary-blue);
+
+    padding: 18px 40px;
+
+    box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.header-content {
+
+    width: 100%;
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.header-left {
+
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.header-logo {
+
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    background-color: var(--white);
+}
+
+
+.header-left h1 {
+
+    color: var(--white);
+
+    font-size: 27px;
+
+    margin-bottom: 7px;
+}
+
+
+.header-left p {
+
+    color: #E7ECF3;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   ACCIONES HEADER
+   ========================================= */
+
+.header-actions {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.back-button,
+.logout-button {
+
+    padding: 10px 17px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.back-button {
+
+    background-color: var(--white);
+
+    color: var(--primary-blue);
+
+    border: 2px solid var(--white);
+}
+
+
+.back-button:hover {
+
+    background-color: #EEF2F7;
+}
+
+
+.logout-button {
+
+    background-color: transparent;
+
+    color: var(--white);
+
+    border: 2px solid var(--white);
+}
+
+
+.logout-button:hover {
+
+    background-color: var(--primary-red);
+
+    border-color: var(--primary-red);
+}
+
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+.main-content {
+
+    min-height: calc(100vh - 136px);
+
+    display: flex;
+    justify-content: center;
+
+    padding: 55px 20px 70px;
+}
+
+
+/* =========================================
+   TARJETA PRINCIPAL
+   ========================================= */
+
+.form-card {
+
+    width: 100%;
+    max-width: 600px;
+
+    align-self: flex-start;
+
+    padding: 38px 40px;
+
+    background-color: var(--white);
+
+    border-radius: 12px;
+
+    border-top: 6px solid var(--primary-red);
+
+    box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+
+.form-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.form-header h2 {
+
+    color: var(--primary-blue);
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+}
+
+
+.form-header p {
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   BLOQUES / PASOS
+   ========================================= */
+
+.form-step {
+
+    margin-top: 28px;
+}
+
+
+.form-step:first-of-type {
+
+    margin-top: 0;
+}
+
+
+.form-step h3 {
+
+    color: var(--primary-blue);
+
+    font-size: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+.resource-step {
+
+    padding-top: 28px;
+
+    border-top: 1px solid var(--border-color);
+}
+
+
+/* =========================================
+   FORMULARIOS
+   ========================================= */
+
+.course-form,
+.resource-form {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 19px;
+}
+
+
+.form-group {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.form-group label {
+
+    color: var(--text-dark);
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.form-group input,
+.form-group select {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 7px;
+
+    background-color: var(--white);
+
+    color: var(--text-dark);
+
+    font-size: 16px;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+
+    outline: none;
+
+    border-color: var(--primary-blue);
+
+    box-shadow:
+            0 0 0 3px rgba(23, 59, 108, 0.12);
+}
+
+
+/* =========================================
+   CURSO SELECCIONADO
+   ========================================= */
+
+.selected-course {
+
+    margin-bottom: 20px;
+
+    padding: 12px 14px;
+
+    background-color: #EEF3F9;
+
+    border-left: 4px solid var(--primary-blue);
+
+    border-radius: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+
+.selected-course strong {
+
+    color: var(--primary-blue);
+}
+
+
+/* =========================================
+   MENSAJE SIN TEMAS
+   ========================================= */
+
+.empty-message {
+
+    padding: 15px 16px;
+
+    background-color: #FFF4F5;
+
+    border-left: 4px solid var(--primary-red);
+
+    border-radius: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   BOTÓN CONTINUAR
+   ========================================= */
+
+.continue-button {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 2px solid var(--primary-blue);
+    border-radius: 7px;
+
+    background-color: var(--white);
+
+    color: var(--primary-blue);
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease;
+}
+
+
+.continue-button:hover {
+
+    background-color: var(--primary-blue);
+
+    color: var(--white);
+}
+
+
+/* =========================================
+   BOTÓN GUARDAR
+   ========================================= */
+
+.save-button {
+
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: var(--primary-red);
+
+    color: var(--white);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            transform 0.1s ease;
+}
+
+
+.save-button:hover {
+
+    background-color: var(--primary-red-hover);
+}
+
+
+.save-button:active {
+
+    transform: scale(0.99);
+}
+
+
+/* =========================================
+   CONFIRMACIÓN
+   ========================================= */
+
+.success-card {
+
+    width: 100%;
+    max-width: 600px;
+
+    align-self: flex-start;
+
+    padding: 45px 40px;
+
+    background-color: var(--white);
+
+    border-radius: 12px;
+
+    border-top: 6px solid var(--primary-red);
+
+    box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.10);
+
+    text-align: center;
+}
+
+
+.success-circle {
+
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: #EAF6EC;
+
+    color: #2E7D32;
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+.success-card h2 {
+
+    color: var(--primary-blue);
+
+    font-size: 25px;
+
+    margin-bottom: 12px;
+}
+
+
+.success-card p {
+
+    color: var(--text-secondary);
+
+    line-height: 1.5;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   BOTONES DE CONFIRMACIÓN
+   ========================================= */
+
+.success-actions {
+
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+.success-actions a {
+
+    padding: 12px 22px;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+}
+
+
+.btn-primary {
+
+    background-color: var(--primary-red);
+
+    color: var(--white);
+
+    border: 2px solid var(--primary-red);
+}
+
+
+.btn-primary:hover {
+
+    background-color: var(--primary-red-hover);
+
+    border-color: var(--primary-red-hover);
+}
+
+
+.btn-secondary {
+
+    background-color: var(--white);
+
+    color: var(--primary-blue);
+
+    border: 2px solid var(--primary-blue);
+}
+
+
+.btn-secondary:hover {
+
+    background-color: var(--primary-blue);
+
+    color: var(--white);
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .main-header {
+
+        padding: 15px 20px;
+    }
+
+
+    .header-logo {
+
+        width: 75px;
+        height: 75px;
+    }
+
+
+    .header-left h1 {
+
+        font-size: 21px;
+    }
+
+
+    .header-actions {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .form-card {
+
+        padding: 30px 25px;
+    }
+
+
+    .success-card {
+
+        padding: 38px 28px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .header-content {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .header-actions {
+
+        width: 100%;
+    }
+
+
+    .back-button,
+    .logout-button {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .form-card {
+
+        padding: 28px 20px;
+    }
+
+
+    .success-actions {
+
+        flex-direction: column;
+    }
+
+
+    .success-actions a {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+}

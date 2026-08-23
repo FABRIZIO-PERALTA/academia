@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ca"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Alumne creat | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin-alumno.css}">
+</head>
+
+<body>
+
+<!-- =========================================
+     HEADER
+     ========================================= -->
+
+<header class="main-header">
+
+    <div class="header-content">
+
+        <!-- Logo + título -->
+
+        <div class="header-left">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div>
+
+                <h1>Afegir alumne</h1>
+
+                <p>
+                    Panell d'administració
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Cerrar sesión -->
+
+        <form th:action="@{/logout}"
+              method="post">
+
+            <button
+                    type="submit"
+                    class="logout-button">
+
+                Tancar sessió
+
+            </button>
+
+        </form>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     CONFIRMACIÓN
+     ========================================= -->
+
+<main class="main-content">
+
+    <section class="success-card">
+
+        <div class="success-circle">
+            ✓
+        </div>
+
+        <h2>
+            Alumne creat correctament
+        </h2>
+
+        <p>
+            L'alumne s'ha afegit correctament
+            i ja està assignat al curs seleccionat.
+        </p>
+
+
+        <!-- Acciones -->
+
+        <div class="success-actions">
+
+            <a th:href="@{/admin/inicio}"
+               class="btn-secondary">
+
+                Tornar al panell
+
+            </a>
+
+
+            <a th:href="@{/admin/alumnos/nuevo}"
+               class="btn-primary">
+
+                Afegir un altre alumne
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+</body>
+</html>

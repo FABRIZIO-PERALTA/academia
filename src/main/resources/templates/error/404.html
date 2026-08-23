@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ca"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pàgina no trobada | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/error.css}">
+
+</head>
+
+<body>
+
+<main class="error-page">
+
+    <section class="error-card">
+
+        <img
+                th:src="@{/images/logo.jpeg}"
+                alt="Too Cool for School"
+                class="error-logo">
+
+
+        <span class="error-code">
+            404
+        </span>
+
+
+        <h1>
+            Pàgina no trobada
+        </h1>
+
+
+        <p>
+            La pàgina que estàs buscant no existeix
+            o ja no està disponible.
+        </p>
+
+
+        <a th:href="@{/login}"
+           class="primary-button">
+
+            Tornar a l'inici de sessió
+
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

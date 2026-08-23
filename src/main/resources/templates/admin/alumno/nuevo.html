@@ -1,121 +1,231 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo alumno</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Afegir alumne | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin-alumno.css}">
 </head>
 
 <body>
 
-<header>
+<!-- =========================================
+     HEADER
+     ========================================= -->
 
-    <h1>Academia de Inglés</h1>
+<header class="main-header">
 
-    <a th:href="@{/admin/inicio}">
-        Volver al panel
-    </a>
+    <div class="header-content">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+        <!-- Logo + título -->
+
+        <div class="header-left">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div>
+
+                <h1>Afegir alumne</h1>
+
+                <p>Panell d'administració</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Botones -->
+
+        <div class="header-actions">
+
+            <a th:href="@{/admin/inicio}"
+               class="back-button">
+
+                Tornar al panell
+
+            </a>
+
+
+            <form th:action="@{/logout}"
+                  method="post">
+
+                <button
+                        type="submit"
+                        class="logout-button">
+
+                    Tancar sessió
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </header>
 
 
-<main>
+<!-- =========================================
+     CONTENIDO PRINCIPAL
+     ========================================= -->
 
-    <h2>Añadir alumno</h2>
+<main class="main-content">
 
-    <form th:action="@{/admin/alumnos/nuevo}"
-          th:object="${alumno}"
-          method="post">
-
-        <div>
-
-            <label for="nombre">
-                Nombre
-            </label>
-
-            <input
-                    type="text"
-                    id="nombre"
-                    th:field="*{nombre}"
-                    required
-            >
-
-        </div>
+    <section class="form-card">
 
 
-        <div>
+        <!-- Título del formulario -->
 
-            <label for="apellido">
-                Apellido
-            </label>
+        <div class="form-header">
 
-            <input
-                    type="text"
-                    id="apellido"
-                    th:field="*{apellido}"
-                    required
-            >
+            <h2>Nou alumne</h2>
+
+            <p>
+                Introdueix les dades de l'alumne i assigna'l
+                al curs corresponent.
+            </p>
 
         </div>
 
 
-        <div>
+        <!-- =================================
+             MENSAJE DE ERROR
+             ================================= -->
 
-            <label for="dni">
-                DNI
-            </label>
+        <div class="error-message"
+             th:if="${error != null}">
 
-            <input
-                    type="text"
-                    id="dni"
-                    th:field="*{dni}"
-                    required
-            >
+            <span class="error-icon">
+                !
+            </span>
 
-        </div>
-
-
-        <div>
-
-            <label for="cursoId">
-                Curso
-            </label>
-
-            <select
-                    id="cursoId"
-                    name="cursoId"
-                    required>
-
-                <option value="">
-                    Seleccionar curso
-                </option>
-
-                <option
-                        th:each="curso : ${cursos}"
-                        th:value="${curso.id}"
-                        th:text="${curso.nivel}">
-                </option>
-
-            </select>
+            <span th:text="${error}">
+                Error
+            </span>
 
         </div>
 
 
-        <button type="submit">
-            Guardar alumno
-        </button>
+        <!-- =================================
+             FORMULARIO
+             ================================= -->
 
-    </form>
+        <form
+                th:action="@{/admin/alumnos/nuevo}"
+                th:object="${alumno}"
+                method="post"
+                class="student-form">
+
+
+            <!-- Nombre -->
+
+            <div class="form-group">
+
+                <label for="nombre">
+                    Nom
+                </label>
+
+                <input
+                        type="text"
+                        id="nombre"
+                        th:field="*{nombre}"
+                        placeholder="Introdueix el nom"
+                        required>
+
+            </div>
+
+
+            <!-- Apellido -->
+
+            <div class="form-group">
+
+                <label for="apellido">
+                    Cognoms
+                </label>
+
+                <input
+                        type="text"
+                        id="apellido"
+                        th:field="*{apellido}"
+                        placeholder="Introdueix els cognoms"
+                        required>
+
+            </div>
+
+
+            <!-- DNI -->
+
+            <div class="form-group">
+
+                <label for="dni">
+                    DNI
+                </label>
+
+                <input
+                        type="text"
+                        id="dni"
+                        th:field="*{dni}"
+                        placeholder="Introdueix el DNI"
+                        required>
+
+            </div>
+
+
+            <!-- Curso -->
+
+            <div class="form-group">
+
+                <label for="cursoId">
+                    Curs
+                </label>
+
+                <select
+                        id="cursoId"
+                        name="cursoId"
+                        required>
+
+                    <option value="">
+                        Selecciona un curs
+                    </option>
+
+                    <option
+                            th:each="curso : ${cursos}"
+                            th:value="${curso.id}"
+                            th:text="${curso.nivel}">
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Guardar -->
+
+            <button
+                    type="submit"
+                    class="save-button">
+
+                Desar alumne
+
+            </button>
+
+        </form>
+
+    </section>
 
 </main>
 
 </body>
-
 </html>

@@ -1,94 +1,166 @@
 <!DOCTYPE html>
-<html lang="es"
+<html lang="ca"
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
     <meta charset="UTF-8">
-    <title>Panel docente - Academia de Inglés</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Panell docent | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/docente-inicio.css}">
+
 </head>
 
 <body>
 
-<header>
+<header class="main-header">
 
-    <h1>Academia de Inglés</h1>
+    <div class="header-content">
 
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">
-            Cerrar sesión
-        </button>
-    </form>
+        <div class="teacher-info">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div class="welcome">
+
+                <h1 th:text="'Benvingut, ' + ${nombreDocente} + '!'">
+                    Benvingut!
+                </h1>
+
+                <p>
+                    Panell docent
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form th:action="@{/logout}"
+              method="post"
+              class="logout-form">
+
+            <button
+                    type="submit"
+                    class="logout-button">
+
+                Tancar sessió
+
+            </button>
+
+        </form>
+
+    </div>
 
 </header>
 
 
-<main>
+<main class="main-content">
 
-    <section>
+    <section class="teacher-actions">
 
-        <h2 th:text="'Bienvenido, ' + ${username}">
-            Bienvenido
-        </h2>
+        <div class="section-header">
 
-        <p>Panel docente</p>
-
-    </section>
-
-
-    <section>
-
-        <h2>¿Qué querés hacer?</h2>
-
-
-        <article>
-
-            <h3>Añadir tema</h3>
+            <h2>Què vols fer?</h2>
 
             <p>
-                Crear un nuevo tema para uno de los cursos.
+                Gestiona els temes, recursos i cursos de l'acadèmia.
             </p>
 
-            <a th:href="@{/docente/temas/nuevo}">
-                Añadir tema
+        </div>
+
+
+        <div class="actions-list">
+
+
+            <!-- AFegir tema -->
+
+            <a th:href="@{/docente/temas/nuevo}"
+               class="action-card">
+
+                <div class="action-content">
+
+                    <h3>
+                        Afegir tema
+                    </h3>
+
+                    <p>
+                        Crea un tema nou i associa'l
+                        al curs corresponent.
+                    </p>
+
+                </div>
+
+                <span class="action-arrow">
+                    →
+                </span>
+
             </a>
 
-        </article>
 
+            <!-- AFegir recurs -->
 
-        <article>
+            <a th:href="@{/docente/recursos/nuevo}"
+               class="action-card">
 
-            <h3>Añadir recurso</h3>
+                <div class="action-content">
 
-            <p>
-                Agregar videos, actividades o juegos
-                a los temas de los cursos.
-            </p>
+                    <h3>
+                        Afegir recurs
+                    </h3>
 
-            <a th:href="@{/docente/recursos/nuevo}">
-                Añadir recurso
+                    <p>
+                        Afegeix vídeos, activitats o jocs
+                        als temes dels cursos.
+                    </p>
+
+                </div>
+
+                <span class="action-arrow">
+                    →
+                </span>
+
             </a>
 
-        </article>
 
+            <!-- Veure cursos -->
 
-        <article>
+            <a th:href="@{/docente/cursos}"
+               class="action-card">
 
-            <h3>Ver cursos</h3>
+                <div class="action-content">
 
-            <p>
-                Consultar los cursos, sus alumnos y sus temas.
-            </p>
+                    <h3>
+                        Veure cursos
+                    </h3>
 
-            <a th:href="@{/docente/cursos}">
-                Ver cursos
+                    <p>
+                        Consulta els cursos, els alumnes
+                        i els temes disponibles.
+                    </p>
+
+                </div>
+
+                <span class="action-arrow">
+                    →
+                </span>
+
             </a>
 
-        </article>
+        </div>
 
     </section>
 
 </main>
 
 </body>
-
 </html>
