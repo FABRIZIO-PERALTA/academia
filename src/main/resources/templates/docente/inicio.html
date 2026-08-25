@@ -32,8 +32,9 @@
 
             <div class="welcome">
 
-                <h1 th:text="'Benvingut, ' + ${nombreDocente} + '!'">
-                    Benvingut!
+                <h1>
+                    Benvingut,
+                    <span th:text="${nombre}"></span>!
                 </h1>
 
                 <p>

@@ -5,12 +5,14 @@ import com.fabri.academia.domain.enums.TipoRecurso;
 import com.fabri.academia.service.CursoService;
 import com.fabri.academia.service.RecursoService;
 import com.fabri.academia.service.TemaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 @RequestMapping("/admin/recursos")
@@ -56,11 +58,13 @@ public class AdminRecursoController {
                     "cursoSeleccionado",
                     cursoService.buscarPorId(cursoId)
                             .orElseThrow(() ->
-                                    new IllegalArgumentException(
+                                    new ResponseStatusException(
+                                            HttpStatus.NOT_FOUND,
                                             "El curso no existe"
                                     )
                             )
             );
+
 
             model.addAttribute(
                     "temas",

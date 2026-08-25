@@ -4,11 +4,13 @@ import com.fabri.academia.domain.Curso;
 import com.fabri.academia.service.AlumnoService;
 import com.fabri.academia.service.CursoService;
 import com.fabri.academia.service.TemaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 @RequestMapping("/admin/cursos")
@@ -46,10 +48,11 @@ public class AdminCursoController {
 
         Curso curso = cursoService.buscarPorId(cursoId)
                 .orElseThrow(() ->
-                        new IllegalArgumentException(
+                        new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
                                 "El curso no existe"
                         )
-                );
+                );;
 
         model.addAttribute(
                 "curso",

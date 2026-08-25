@@ -19,8 +19,17 @@ public class Docente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nombre;
     private String apellido;
+
+    @OneToOne
+    @JoinColumn(
+            name = "usuario_id",
+            unique = true
+    )
+    private Usuario usuario;
+
     @ManyToMany
     @JoinTable(
             name = "docente_curso",
@@ -28,6 +37,4 @@ public class Docente {
             inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
     private List<Curso> cursos;
-
-
 }

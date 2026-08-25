@@ -59,4 +59,16 @@ public class DocenteService {
 
         return docente;
     }
+
+    public Docente obtenerDocentePorUsername(String username) {
+
+        return docenteRepository
+                .findByUsuarioUsername(username)
+                .orElseThrow(() ->
+                        new IllegalArgumentException(
+                                "No existe un docente asociado a este usuario"
+                        )
+                );
+    }
+
 }

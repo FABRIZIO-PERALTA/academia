@@ -14,7 +14,7 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -31,3 +31,28 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Environment / secrets ###
+.env
+.env.*
+!.env.example
+
+### Local configuration ###
+application-local.properties
+application-prod.properties
+
+### Logs ###
+*.log
+logs/
+
+### Database dumps / backups ###
+*.sql
+*.dump
+*.bak
+
+### Temporary / OS files ###
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*~
