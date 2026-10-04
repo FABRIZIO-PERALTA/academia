@@ -68,4 +68,146 @@ public class AdminAlumnoController {
         return "admin/alumno/creado";
     }
 
+
+    // =========================
+    // ELIMINAR ALUMNO
+    // =========================
+
+    @GetMapping("/eliminar")
+    public String mostrarFormularioEliminar(Model model) {
+
+        model.addAttribute(
+                "cursos",
+                cursoService.obtenerCursos()
+        );
+
+        return "admin/alumno/eliminar";
+    }
+
+    @PostMapping("/eliminar")
+    public String seleccionarCurso(
+            @RequestParam Long cursoId,
+            Model model) {
+
+        model.addAttribute(
+                "cursos",
+                cursoService.obtenerCursos()
+        );
+
+        model.addAttribute(
+                "cursoSeleccionado",
+                cursoId
+        );
+
+        model.addAttribute(
+                "alumnos",
+                alumnoService.obtenerAlumnosPorCurso(cursoId)
+        );
+
+        return "admin/alumno/eliminar";
+    }
+
+    @PostMapping("/eliminar/{alumnoId}")
+    public String eliminarAlumno(
+            @PathVariable Long alumnoId) {
+
+        alumnoService.eliminarAlumno(alumnoId);
+
+        return "redirect:/admin/alumnos/eliminado";
+    }
+
+    @GetMapping("/eliminado")
+    public String alumnoEliminado() {
+        return "admin/alumno/eliminado";
+    }
+
+    // =========================
+// ELIMINAR ALUMNO 2
+// =========================
+
+    @GetMapping("/eliminar2")
+    public String mostrarFormularioEliminar2(
+            @RequestParam(required = false, defaultValue = "false") boolean eliminado,
+            Model model) {
+
+        model.addAttribute(
+                "cursos",
+                cursoService.obtenerCursos()
+        );
+
+        model.addAttribute(
+                "eliminado",
+                eliminado
+        );
+
+        return "admin/alumno/eliminar2";
+    }
+
+
+    @PostMapping("/eliminar2")
+    public String seleccionarCurso2(
+            @RequestParam Long cursoId,
+            Model model) {
+
+        model.addAttribute(
+                "cursos",
+                cursoService.obtenerCursos()
+        );
+
+        model.addAttribute(
+                "cursoSeleccionado",
+                cursoId
+        );
+
+        model.addAttribute(
+                "alumnos",
+                alumnoService.obtenerAlumnosPorCurso(cursoId)
+        );
+
+        return "admin/alumno/eliminar2";
+    }
+
+
+    @PostMapping("/eliminar2/seleccionar")
+    public String seleccionarAlumno2(
+            @RequestParam Long alumnoId,
+            @RequestParam Long cursoId,
+            Model model) {
+
+        model.addAttribute(
+                "cursos",
+                cursoService.obtenerCursos()
+        );
+
+        model.addAttribute(
+                "cursoSeleccionado",
+                cursoId
+        );
+
+        model.addAttribute(
+                "alumnos",
+                alumnoService.obtenerAlumnosPorCurso(cursoId)
+        );
+
+        model.addAttribute(
+                "alumnoSeleccionado",
+                alumnoService.buscarPorId(alumnoId)
+                        .orElseThrow(() ->
+                                new IllegalArgumentException(
+                                        "El alumno no existe"
+                                ))
+        );
+
+        return "admin/alumno/eliminar2";
+    }
+
+
+    @PostMapping("/eliminar2/confirmar")
+    public String confirmarEliminacion2(
+            @RequestParam Long alumnoId) {
+
+        alumnoService.eliminarAlumno(alumnoId);
+
+        return "redirect:/admin/alumnos/eliminar2?eliminado=true";
+    }
 }

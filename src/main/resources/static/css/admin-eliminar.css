@@ -1,0 +1,673 @@
+:root {
+
+    --primary-blue: #173B6C;
+    --primary-blue-dark: #102D54;
+
+    --primary-red: #D91E36;
+    --primary-red-hover: #B9182D;
+
+    --white: #FFFFFF;
+    --background: #F4F6F9;
+
+    --text-dark: #252525;
+    --text-secondary: #667085;
+
+    --border-color: #E1E5EA;
+}
+
+
+/* =========================================
+   RESET
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: var(--background);
+
+    color: var(--text-dark);
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.main-header {
+
+    width: 100%;
+
+    background-color: var(--primary-blue);
+
+    padding: 18px 40px;
+
+    box-shadow:
+            0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.header-content {
+
+    width: 100%;
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.admin-info {
+
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+.header-logo {
+
+    width: 105px;
+    height: 105px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    background-color: var(--white);
+}
+
+
+.welcome h1 {
+
+    color: var(--white);
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+
+.welcome p {
+
+    color: #E7ECF3;
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   HEADER ACTIONS
+   ========================================= */
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.back-button {
+
+    padding: 11px 20px;
+
+    border-radius: 7px;
+
+    background-color: var(--white);
+
+    color: var(--primary-blue);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+            background-color 0.2s ease;
+}
+
+
+.back-button:hover {
+
+    background-color: #E7ECF3;
+}
+
+
+.logout-form {
+
+    margin: 0;
+}
+
+
+.logout-button {
+
+    padding: 11px 20px;
+
+    border: 2px solid var(--white);
+    border-radius: 7px;
+
+    background-color: transparent;
+
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease;
+}
+
+
+.logout-button:hover {
+
+    background-color: var(--primary-red);
+
+    border-color: var(--primary-red);
+}
+
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+.main-content {
+
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 50px 40px 70px;
+}
+
+
+.section-header {
+
+    margin-bottom: 30px;
+}
+
+
+.section-header h2 {
+
+    color: var(--primary-blue);
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+
+.section-header p {
+
+    color: var(--text-secondary);
+
+    font-size: 16px;
+}
+
+
+/* =========================================
+   PANEL
+   ========================================= */
+
+.delete-panel {
+
+    max-width: 760px;
+
+    background-color: var(--white);
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 10px;
+
+    padding: 28px;
+
+    box-shadow:
+            0 5px 18px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================
+   FORMULARIO
+   ========================================= */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+
+    color: var(--primary-blue);
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.form-group select {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 7px;
+
+    background-color: var(--white);
+
+    color: var(--text-dark);
+
+    font-size: 15px;
+}
+
+
+.primary-button {
+
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: var(--primary-blue);
+
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease;
+}
+
+
+.primary-button:hover {
+
+    background-color: var(--primary-blue-dark);
+}
+
+
+/* =========================================
+   ALUMNOS
+   ========================================= */
+
+.students-section {
+
+    margin-top: 35px;
+}
+
+
+.students-section h3 {
+
+    color: var(--primary-blue);
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+}
+
+
+.students-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+.students-list form {
+
+    margin: 0;
+}
+
+
+.student-button {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 16px 18px;
+
+    border: 1px solid var(--border-color);
+
+    border-left: 5px solid var(--primary-blue);
+
+    border-radius: 8px;
+
+    background-color: var(--white);
+
+    color: var(--text-dark);
+
+    font-size: 16px;
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-left-color 0.2s ease;
+}
+
+
+.student-button:hover {
+
+    transform: translateX(4px);
+
+    box-shadow:
+            0 5px 15px rgba(0, 0, 0, 0.08);
+
+    border-left-color: var(--primary-red);
+}
+
+
+.student-arrow {
+
+    color: var(--primary-red);
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SIN ALUMNOS
+   ========================================= */
+
+.empty-message {
+
+    padding: 18px;
+
+    border-radius: 8px;
+
+    background-color: var(--background);
+
+    color: var(--text-secondary);
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   CONFIRMACIÓN
+   ========================================= */
+
+.confirmation-section {
+
+    margin-top: 35px;
+
+    padding-top: 28px;
+
+    border-top: 1px solid var(--border-color);
+}
+
+
+.confirmation-section h3 {
+
+    color: var(--primary-blue);
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+
+.confirmation-section p {
+
+    color: var(--text-secondary);
+
+    margin-bottom: 18px;
+}
+
+
+.selected-student {
+
+    padding: 16px 18px;
+
+    margin-bottom: 22px;
+
+    border-left: 5px solid var(--primary-red);
+
+    border-radius: 7px;
+
+    background-color: #F9FAFB;
+
+    color: var(--text-dark);
+}
+
+
+.confirmation-actions {
+
+    display: flex;
+
+    gap: 12px;
+}
+
+
+.confirmation-actions form {
+
+    margin: 0;
+}
+
+
+.secondary-button {
+
+    padding: 11px 20px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 7px;
+
+    background-color: var(--white);
+
+    color: var(--text-dark);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+.secondary-button:hover {
+
+    background-color: var(--background);
+}
+
+
+.delete-button {
+
+    padding: 11px 20px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: var(--primary-red);
+
+    color: var(--white);
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+            background-color 0.2s ease;
+}
+
+
+.delete-button:hover {
+
+    background-color: var(--primary-red-hover);
+}
+
+
+/* =========================================
+   ÉXITO
+   ========================================= */
+
+.success-message {
+
+    max-width: 760px;
+
+    margin-bottom: 20px;
+
+    padding: 14px 16px;
+
+    border-left: 5px solid #2E7D32;
+
+    border-radius: 7px;
+
+    background-color: #E8F5E9;
+
+    color: #2E7D32;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .main-header {
+
+        padding: 15px 20px;
+    }
+
+
+    .header-content {
+
+        align-items: flex-start;
+    }
+
+
+    .header-logo {
+
+        width: 75px;
+        height: 75px;
+    }
+
+
+    .welcome h1 {
+
+        font-size: 21px;
+    }
+
+
+    .welcome p {
+
+        font-size: 14px;
+    }
+
+
+    .logout-button,
+    .back-button {
+
+        padding: 9px 12px;
+
+        font-size: 13px;
+    }
+
+
+    .main-content {
+
+        padding: 35px 20px 60px;
+    }
+
+
+    .delete-panel {
+
+        padding: 22px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .header-content {
+
+        flex-direction: column;
+    }
+
+
+    .header-actions {
+
+        width: 100%;
+    }
+
+
+    .back-button,
+    .logout-form,
+    .logout-button {
+
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    .header-actions {
+
+        flex-direction: column;
+    }
+
+
+    .confirmation-actions {
+
+        flex-direction: column;
+    }
+
+
+    .confirmation-actions form,
+    .confirmation-actions button {
+
+        width: 100%;
+    }
+
+}

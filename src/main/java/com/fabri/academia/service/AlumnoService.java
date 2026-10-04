@@ -89,4 +89,20 @@ public class AlumnoService {
         return alumnoRepository.findByCursoId(cursoId);
     }
 
+    @Transactional
+    public void eliminarAlumno(Long id) {
+
+        Alumno alumno = alumnoRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("El alumno no existe"));
+
+        Usuario usuario = alumno.getUsuario();
+
+        alumnoRepository.delete(alumno);
+
+        if (usuario != null) {
+            usuarioRepository.delete(usuario);
+        }
+    }
+
 }

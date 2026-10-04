@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ca"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Eliminar alumne | Too Cool for School</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/admin-eliminar.css}">
+
+</head>
+
+
+<body>
+
+
+<header class="main-header">
+
+    <div class="header-content">
+
+        <div class="admin-info">
+
+            <img
+                    th:src="@{/images/logo.jpeg}"
+                    src="/images/logo.jpeg"
+                    alt="Too Cool for School"
+                    class="header-logo">
+
+            <div class="welcome">
+
+                <h1>
+                    Eliminar alumne
+                </h1>
+
+                <p>
+                    Panell d'administració
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <a th:href="@{/admin/inicio}"
+               class="back-button">
+
+                Tornar al panell
+
+            </a>
+
+
+            <form th:action="@{/logout}"
+                  method="post"
+                  class="logout-form">
+
+                <button
+                        type="submit"
+                        class="logout-button">
+
+                    Tancar sessió
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="main-content">
+
+    <section class="delete-section">
+
+        <div class="section-header">
+
+            <h2>Eliminar alumne</h2>
+
+            <p>
+                Selecciona un curs per veure els alumnes que hi estan inscrits.
+            </p>
+
+        </div>
+
+
+        <!-- MENSAJE DE ÉXITO -->
+
+        <div th:if="${eliminado}"
+             class="success-message">
+
+            L'alumne s'ha eliminat correctament.
+
+        </div>
+
+
+        <div class="delete-panel">
+
+
+            <!-- =========================================
+                 PASO 1: SELECCIONAR CURSO
+                 ========================================= -->
+
+            <form th:action="@{/admin/alumnos/eliminar2}"
+                  method="post">
+
+                <div class="form-group">
+
+                    <label for="cursoId">
+                        Curs
+                    </label>
+
+                    <select id="cursoId"
+                            name="cursoId"
+                            required>
+
+                        <option value="">
+                            Selecciona un curs
+                        </option>
+
+                        <option th:each="curso : ${cursos}"
+                                th:value="${curso.id}"
+                                th:text="${curso.nivel}"
+                                th:selected="${cursoSeleccionado != null and curso.id == cursoSeleccionado}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit"
+                        class="primary-button">
+
+                    Veure alumnes
+
+                </button>
+
+            </form>
+
+
+            <!-- =========================================
+                 PASO 2: MOSTRAR ALUMNOS
+                 ========================================= -->
+
+            <div th:if="${cursoSeleccionado != null and alumnoSeleccionado == null}"
+                 class="students-section">
+
+                <h3>
+                    Alumnes del curs
+                </h3>
+
+
+                <div th:if="${#lists.isEmpty(alumnos)}"
+                     class="empty-message">
+
+                    Aquest curs no té alumnes inscrits.
+
+                </div>
+
+
+                <div th:unless="${#lists.isEmpty(alumnos)}"
+                     class="students-list">
+
+                    <form th:each="alumno : ${alumnos}"
+                          th:action="@{/admin/alumnos/eliminar2/seleccionar}"
+                          method="post">
+
+                        <input type="hidden"
+                               name="alumnoId"
+                               th:value="${alumno.id}">
+
+                        <input type="hidden"
+                               name="cursoId"
+                               th:value="${cursoSeleccionado}">
+
+
+                        <button type="submit"
+                                class="student-button">
+
+                            <span
+                                    th:text="${alumno.nombre + ' ' + alumno.apellido}">
+                                Nom de l'alumne
+                            </span>
+
+                            <span class="student-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 PASO 3: CONFIRMAR ELIMINACIÓN
+                 ========================================= -->
+
+            <div th:if="${alumnoSeleccionado != null}"
+                 class="confirmation-section">
+
+                <h3>
+                    Confirmar eliminació
+                </h3>
+
+
+                <p>
+                    Estàs segur que vols eliminar aquest alumne?
+                </p>
+
+
+                <div class="selected-student">
+
+                    <strong
+                            th:text="${alumnoSeleccionado.nombre + ' ' + alumnoSeleccionado.apellido}">
+                        Nom de l'alumne
+                    </strong>
+
+                </div>
+
+
+                <div class="confirmation-actions">
+
+
+                    <!-- CANCELAR -->
+
+                    <form th:action="@{/admin/alumnos/eliminar2}"
+                          method="post">
+
+                        <input type="hidden"
+                               name="cursoId"
+                               th:value="${cursoSeleccionado}">
+
+                        <button type="submit"
+                                class="secondary-button">
+
+                            Cancel·lar
+
+                        </button>
+
+                    </form>
+
+
+                    <!-- CONFIRMAR -->
+
+                    <form th:action="@{/admin/alumnos/eliminar2/confirmar}"
+                          method="post">
+
+                        <input type="hidden"
+                               name="alumnoId"
+                               th:value="${alumnoSeleccionado.id}">
+
+                        <button type="submit"
+                                class="delete-button">
+
+                            Eliminar alumne
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+</main>
+
+
+</body>
+
+</html>
